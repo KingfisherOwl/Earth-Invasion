@@ -137,6 +137,7 @@ function checkAnswer(selectedAnswer,selectedButton){
         selectedButton.className = "incorrectButton";
         //間違いデータを保存する
         wrongAnswers.push({
+            questionNumber:currentQuestionIndex +1,
             question:currentQuestion.text,
             correctAnswer:currentQuestion.answer,
             selectedAnswer:selectedAnswer
@@ -262,7 +263,7 @@ nextButton.addEventListener("click",function(){
                         wrongAnswers.forEach(function(item,index){
                             wrongAnswerList.innerHTML += `
                                 <div class="reviewItem">
-                                    <p class="reviewNumber">QUESTION ${index + 1}</p>
+                                    <p class="reviewNumber">QUESTION ${item.questionNumber}</p>
                                     <p class="reviewQuestion">${item.question}</p>
                                     <p class="reviewCorrect">〇 ${item.correctAnswer}</p>
                                     <p class="reviewWrong">× ${item.selectedAnswer}</p>
