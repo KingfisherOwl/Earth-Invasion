@@ -36,12 +36,21 @@ button{
     margin:10px;
     transition:color 0.3s;
 }
+#questionText{
+    font-family:"DotGothic16",sans-serif;
+}
+#choicesArea button{
+    font-family:"DotGothic16",sans-serif;
+}
 
 #result{
     font-family:"Orbitron",sans-serif;
     letter-spacing:2px;
     min-height:30px;
     margin:15px 0;
+}
+.gameDescription{
+    font-family:"DotGothic16",sans-serif;
 }
 
 #startButton{
@@ -391,11 +400,16 @@ button:not(:disabled):hover{
         0 0 20px #ff4444,
         0 0 40px #ff4444;
 }
+.reviewQuestion{
+    font-family:"DotGothic16",sans-serif
+}
 .reviewWrong{
     color:#ff4444;
+    font-family:"DotGothic16",sans-serif;
 }
 .reviewCorrect{
     color:#00ff99;
+    font-family:"DotGothic16",sans-serif;
 }
 #reviewArea{
     width:90%;
@@ -404,6 +418,7 @@ button:not(:disabled):hover{
 }
 #reviewArea h2{
     color:#00ff99;
+    font-family:"Orbitron",sans-serif;
     letter-spacing:4px;
     font-size:20px;
     text-shadow:  
@@ -423,6 +438,7 @@ button:not(:disabled):hover{
 }
 .reviewNumber{
     color:#00ff99;
+    font-family:"Orbitron",sans-serif;
     font-size:12px;
     letter-spacing:2px;
     border-bottom:1px solid rgba(0,255,153,0.4);

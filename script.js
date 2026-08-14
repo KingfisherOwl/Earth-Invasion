@@ -263,7 +263,7 @@ nextButton.addEventListener("click",function(){
                             wrongAnswerList.innerHTML += `
                                 <div class="reviewItem">
                                     <p class="reviewNumber">QUESTION ${index + 1}</p>
-                                    <p>${item.question}</p>
+                                    <p class="reviewQuestion">${item.question}</p>
                                     <p class="reviewCorrect">〇 ${item.correctAnswer}</p>
                                     <p class="reviewWrong">× ${item.selectedAnswer}</p>
                                     
