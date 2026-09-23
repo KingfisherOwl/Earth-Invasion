@@ -9,43 +9,84 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id="startScreen">
-        <h1 id="gameTitle">EARTH INVASION</h1>
-        <p id="missionText">MISSION : COLLECT EARTH DATA</p>
-        <p class="gameDescription">10問の中からランダムで3問出題されます。<br>
-            全問正解を目指そう！</p>
-        <button id="startButton">MISSION START</button>
+        <h1 id="gameTitle" class="en">EARTH INVASION</h1>
+        <p id="missionText" class="en">MISSION : COLLECT EARTH DATA</p>
+        <p class="gameDescription jp">あなたの使命は地球のデータを集めることです。<br>
+            期待しています。</p>
+        <button id="startButton" class="en">MISSION START</button>
     </div>
+    <div id="mapScreen">
+        <h2 id="selectAreaMessage" class="en">SELECT AREA</h2>
+        <p class="mapMessage jp">データを収集する地域を選択してください。</p>
+        <div id="areaButtons">
+            <div class="areaItem">
+                <button id="basicButton" class="jp">地球基礎</button>
+                <div class="areaProgressBar">
+                    <div id="basicProgress" class="areaProgressFill"></div>
+                </div>
+                <p id="basicPercent" class="en">0%</p>
+            </div>
+            <div class="areaItem">
+                <button id="japanButton" class="jp">日本</button>
+                <div class="areaProgressBar">
+                    <div id="japanProgress" class="areaProgressFill"></div>
+                </div>
+                <p id="japanPercent" class="en">0%</p>
+            </div>
+            <div class="areaItem">
+                <button id="asiaButton" class="jp">アジア</button>
+                <div class="areaProgressBar">
+                    <div id="asiaProgress" class ="areaProgressFill"></div>
+                </div>
+                <p id="asiaPercent" class="en">0%</p>
+            </div>
+            <div class="areaItem">
+                <button id="europeButton" class="jp">ヨーロッパ</button>
+                <div class="areaProgressBar">
+                    <div id="europeProgress" class="areaProgressFill"></div>
+                </div>
+                <p id="europePercent" class="en">0%</p>
+            </div>
+
+            <button class="jp lockedArea" disabled>アフリカ🔒</button>
+            <button class="jp lockedArea" disabled>北アメリカ🔒</button>
+            <button class="jp lockedArea" disabled>南アメリカ🔒</button>
+            <button class="jp lockedArea" disabled>オセアニア🔒</button>
+        </div>
+    </div>
+
     <div id="quizScreen">
-        <div class="monitorHeader">
+        <div class="monitorHeader en">
             <span>EARTH INVASION</span><br>
             <span id="missionNumber">MISSION 1 / 3</span>
         </div>
 
         
 
-        <p id="questionText"></p>
+        <p id="questionText" class="jp"></p>
         <div id="choicesArea">
             <button id="choice1"></button>
             <button id="choice2"></button>
             <button id="choice3"></button>
             <button id="choice4"></button>
         </div>
+        <button id="skipButton" class="en">SKIP</button>
         
         <p id="result"></p>
         <div id="progressArea">
-            <p>DATA COLLECTION</p>
+            <p class="en">DATA COLLECTION</p>
             <div id="progressBar">
                 <div id="progressFill"></div>
             </div>
         </div>
 
         <div id="nextButtonArea">
-            <button id="nextButton">NEXT MISSION</button>
+            <button id="nextButton" class="en">NEXT</button>
         </div>
         
     </div>
@@ -60,13 +101,14 @@
     </div>
     <div id="resultScreen">
         <h1 id="missionComplete"></h1>
-        <p id="resultMessage"></p>
-        <p id="scoreText"></p>
+        <p id="resultMessage" class="en"></p>
+        <p id="scoreText" class="en"></p>
+        <div id="starRating" class="en"></div>
         <div id="reviewArea">
             <h2>REVIEW</h2>
             <div id="wrongAnswerList"></div>
         </div>
-        <button id="restartButton">NEW MISSION</button>
+        <button id="restartButton" class="en">NEW MISSION</button>
     </div>
     <script src="script.js"></script>
 </body>

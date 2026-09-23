@@ -16,6 +16,13 @@ body{
 
     text-align:center;
 }
+.jp{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:400;
+}
+.en{
+    font-family:"Orbitron",sans-serif;
+}
 h1{
     color: #0066cc;
 }
@@ -36,12 +43,54 @@ button{
     margin:10px;
     transition:color 0.3s;
 }
-#questionText{
-    font-family:"DotGothic16",sans-serif;
+#mapScreen{
+    display:none;
+    width:700px;
+    max-width:90%;
+    min-height:500px;
+    margin:40px auto;
+    padding:30px;
+    box-sizing:border-box;
+    background:rgba(0,10,15,0.82);
+    border:2px solid #00ff99;
+    border-radius:20px;
+    box-shadow:0 0 10px #00ff99,
+    0 0 30px rgba(0,255,153,0.4);
+    text-align:center;
 }
-#choicesArea button{
-    font-family:"DotGothic16",sans-serif;
+.areaProgressBar{
+    width:280px;
+    max-width:90%;
+    height:8px;
+    margin:5px auto;
+    background:rgba(255,255,255,0.15);
+    border-radius:10px;
+    overflow:hidden;
 }
+.areaProgressFill{
+    width:0%;
+    height:100%;
+    background:#00bfff;
+    transition:width 0.5s;
+}
+#basicPercent,#japanPercent,#asiaPercent,#europePercent{
+    margin:5px 0 15px;
+    font-size:12px;
+    color:#00d9ff;
+}
+.lockedArea{
+    color:#777;
+    border-color:#555;
+    background:#111;
+    opacity:0.6;
+    cursor:not-allowed;
+    text-shadow:none;
+    box-shadow:none;
+}
+#choiceArea button{
+    font-family:"Zen Kaku Gothic New",monospace;
+}
+
 
 #result{
     font-family:"Orbitron",sans-serif;
@@ -49,12 +98,10 @@ button{
     min-height:30px;
     margin:15px 0;
 }
-.gameDescription{
-    font-family:"DotGothic16",sans-serif;
-}
+
 
 #startButton{
-    font-family:"Orbitron",sans-serif;
+    
     font-size:22px;
     letter-spacing:3px;
 }
@@ -67,6 +114,9 @@ button:not(:disabled):hover{
     0 0 20px white;
     
     
+}
+#selectAreaMessage{
+    color:#00ff99;
 }
 
 #quizScreen{
@@ -95,20 +145,20 @@ button:not(:disabled):hover{
 }
 #analyzingTitle{
     font-family:"Orbitron",sans-serif;
-    color:#00ff99;
+    color:#00d9ff;
     font-size:48px;
     letter-spacing:6px;
     text-shadow:
-    0 0 5px #00ff99,
-    0 0 10px #00ff99,
-    0 0 20px #00ff99,
-    0 0 40px #00ff99;
+    0 0 5px #00d9ff,
+    0 0 10px #00d9ff,
+    0 0 20px #00d9ff,
+    0 0 40px #00d9ff;
 }
 #analysisBar{
     width:70%;
     height:20px;
     margin:20px auto;
-    border:2px solid #00ff99;
+    border:2px solid #00d9ff;
     border-radius:10px;
     overflow:hidden;
     background:rgba(0,255,153,0.1);
@@ -116,13 +166,13 @@ button:not(:disabled):hover{
 #analysisFill{
     width:0%;
     height:100%;
-    background: #00ff99;
-    box-shadow:0 0 10px #00ff99,
-    0 0 20px #00ff99;
+    background: #00d9ff;
+    box-shadow:0 0 10px #00d9ff,
+    0 0 20px #00d9ff;
 }
 #analysisPercent{
     font-family:"Orbitron",sans-serif;
-    color:#00ff99;
+    color:#00d9ff;
 }
 
 #resultScreen{
@@ -175,7 +225,7 @@ button:not(:disabled):hover{
 }
 
 #gameTitle{
-    font-family:"Orbitron",sans-serif;
+    
     color: #00ff99;
     font-size:64px;
     letter-spacing:6px;
@@ -235,24 +285,45 @@ button:not(:disabled):hover{
     border-bottom:1px solid #00ff99;
     padding-bottom:10px;
     margin-bottom:30px;
-    font-family:"Orbitron",sans-serif;
+}
+#skipButton{
+    display:block;
+    width:120px;
+    padding:7px 12px;
+    margin:12px auto;
+    font-size:13px;
+    color:#00bfff;
+    backGround:#111820;
+    border:1px solid #00bfff;
+    border-radius:5px;
+    cursor:pointer;
+    box-shadow:0 0 5px rgba(0,191,255,0.4);
+}
+#skipButton:not(:disabled):hover{
+    background:#162630;
+    box-shadow:0 0 8px #00bfff,
+    0 0 15px rgba(0,191,255,0.5);
+}
+#skipButton:disabled{
+    opacity:0.4;
+    cursor:default;
+    box-shadow:none;
 }
 #progressArea{
     margin-top:30px;
 }
 
 #progressArea p {
-    color:#00ff99;
+    color:#00d9ff;
     font-size:14px;
     letter-spacing:2px;
-    font-family:"Orbitron",sans-serif;
 }
 
 #progressBar{
     width:80%;
     height:18px;
     margin:10px auto 25px;
-    border:1px solid #00ff99;
+    border:1px solid #00d9ff;
     border-radius:10px;
     overflow:hidden;
     background:rgba(0,255,153,0.1);
@@ -260,11 +331,16 @@ button:not(:disabled):hover{
 #progressFill{
     width:0%;
     height:100%;
-    background:#00ff99;
+    background:linear-gradient(
+        90deg,
+        #008cff,
+        #00d9ff
+    );
     box-shadow:
-    0 0 5px #00ff99,
-    0 0 10px #00ff99;
-    transition:width 0.5s;
+    0 0 8px #00bfff,
+    0 0 18px rgba(0,191,255,0.8);
+    transition:0.6s;
+    
 }
 #nextButtonArea{
     min-height:70px;
@@ -274,21 +350,51 @@ button:not(:disabled):hover{
 }
 
 #missionComplete{
-    font-family:"Orbitron",sans-serif;
-    
     font-size:40px;
     letter-spacing:4px;
-    
     animation:missionBlink 0.8s 3;
+    font-family:"Orbitron",sans-serif;
 }
 #scoreText{
-    font-family:"Orbitron",sans-serif;
     color:#00ff99;
     font-size:24px;
     letter-spacing:3px;
 }
+#starRating{
+    margin:20px 0;
+    min-height:90px;
+}
+.star{
+    display:inline-block;
+    color:#666;
+    font-size:60px;
+    margin:0 6px;
+    transition:
+        color 0.3s,
+        text-shadow 0.3s,
+        transform 0.3s;
+}
+.starEarned{
+    color:#ffd700;
+    text-shadow:
+        0 0 5px #fff4a3,
+        0 0 10px #ffd700,
+        0 0 20px #ffd700,
+        0 0 35px #ffd300;
+    animation:starPop 0.4s;
+}
+@keyframes starPop{
+    0%{
+        transform:scale(0.7);
+    }
+    60%{
+        transform:scale(1.35);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
 #restartButton{
-    font-family:"Orbitron",sans-serif;
     font-size:22px;
     letter-spacing:3px;
     color:#00ff99;
@@ -312,19 +418,19 @@ button:not(:disabled):hover{
 @keyframes progressFlash{
     0%{
         box-shadow:
-        0 0 5px #00ff99,
-        0 0 10px #00ff99;
+        0 0 5px #00d9ff,
+        0 0 10px #00d9ff;
     }
     50%{
         box-shadow:
-        0 0 20px #00ff99,
-        0 0 40px #00ff99,
-        0 0 80px #00ff99;
+        0 0 20px #00d9ff,
+        0 0 40px #00d9ff,
+        0 0 80px #00d9ff;
     }
     100%{
         box-shadow:
-        0 0 5px #00ff99,
-        0 0 10px #00ff99;
+        0 0 5px #00d9ff,
+        0 0 10px #00d9ff;
     }
 }
 .progressFlash{
@@ -332,22 +438,22 @@ button:not(:disabled):hover{
 }
 @keyframes barFrameFlash{
     0% {
-        border-color: #00ff99;
-        box-shadow: 0 0 5px #00ff99;
+        border-color: #00d9ff;
+        box-shadow: 0 0 5px #00d9ff;
     }
 
     50% {
         border-color: white;
 
         box-shadow:
-            0 0 10px #00ff99,
-            0 0 25px #00ff99,
-            0 0 50px #00ff99;
+            0 0 10px #00d9ff,
+            0 0 25px #00d9ff,
+            0 0 50px #00d9ff;
     }
 
     100% {
-        border-color: #00ff99;
-        box-shadow: 0 0 5px #00ff99;
+        border-color: #00d9ff;
+        box-shadow: 0 0 5px #00d9ff;
     }
 }
 .barFrameFlash{
@@ -400,16 +506,14 @@ button:not(:disabled):hover{
         0 0 20px #ff4444,
         0 0 40px #ff4444;
 }
-.reviewQuestion{
-    font-family:"DotGothic16",sans-serif
-}
+
 .reviewWrong{
     color:#ff4444;
-    font-family:"DotGothic16",sans-serif;
+    
 }
 .reviewCorrect{
     color:#00ff99;
-    font-family:"DotGothic16",sans-serif;
+    
 }
 #reviewArea{
     width:90%;
@@ -438,7 +542,6 @@ button:not(:disabled):hover{
 }
 .reviewNumber{
     color:#00ff99;
-    font-family:"Orbitron",sans-serif;
     font-size:12px;
     letter-spacing:2px;
     border-bottom:1px solid rgba(0,255,153,0.4);
@@ -449,6 +552,7 @@ button:not(:disabled):hover{
         padding:10px;
     }
     #startScreen,
+    #mapScreen,
     #quizScreen,
     #resultScreen,
     #analyzingScreen{
