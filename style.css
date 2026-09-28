@@ -207,6 +207,137 @@ button:not(:disabled):hover{
 .incorrectButton{
     background-color: red;
 }
+
+.correctMark {
+    display: inline-block;
+
+    font-size: 42px;
+    font-weight: bold;
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 8px #00ff88,
+        0 0 20px #00ff88;
+
+    animation: correctPop 0.45s ease-out;
+}
+
+@keyframes correctPop {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.correctText {
+    display: inline-block;
+
+    margin-left: 8px;
+
+    animation: correctTextIn 0.5s ease-out;
+}
+
+@keyframes correctTextIn {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#quizScreen.correctFlash {
+    animation: correctScreenFlash 0.5s;
+}
+
+@keyframes correctScreenFlash {
+
+    0% {
+        box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+    }
+
+    40% {
+        box-shadow:
+            0 0 30px rgba(0, 255, 136, 0.8),
+            inset 0 0 35px rgba(0, 255, 136, 0.15);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+    }
+}
+#quizScreen {
+    position: relative;
+    overflow: hidden;
+}
+
+#particleArea {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #00ff88;
+
+    box-shadow:
+        0 0 6px #00ff88,
+        0 0 12px #00ff88,
+        0 0 20px #00ff88;
+
+    animation: particleBurst 0.9s ease-out forwards;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform:
+            translate(0, 0)
+            scale(1.2);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                var(--moveX),
+                var(--moveY)
+            )
+            scale(0);
+
+        opacity: 0;
+    }
+}
+
 #startScreen,
 #resultScreen{
     width:90%;

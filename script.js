@@ -40,6 +40,7 @@ const choice3 = document.getElementById("choice3");
 const choice4 = document.getElementById("choice4");
 const choiceButtons = [choice1, choice2, choice3, choice4];
 const skipButton = document.getElementById("skipButton");
+const particleArea = document.getElementById("particleArea");
 
 const result = document.getElementById("result");
 const nextButton = document.getElementById("nextButton");
@@ -198,44 +199,128 @@ const questionData = {
     asia: [
         {
             id: "asia1",
-            text: "韓国の首都は？",
-            choices: ["ソウル", "釜山", "仁川"],
-            answer: "ソウル"
+            text: "世界で最も高い山、エベレストがある山脈は？",
+            choices: ["アルプス山脈", "ヒマラヤ山脈", "アンデス山脈", "ウラル山脈"],
+            answer: "ヒマラヤ山脈"
         },
         {
             id: "asia2",
-            text: "中国の首都は？",
-            choices: ["上海", "北京", "香港"],
-            answer: "北京"
+            text: "東アジアや東南アジアの気候に大きな影響を与える、季節によって風向きが変わる風を何という？",
+            choices: ["偏西風", "モンスーン", "貿易風", "海陸風"],
+            answer: "モンスーン"
         },
         {
             id: "asia3",
-            text: "タイの首都は？",
-            choices: ["バンコク", "ハノイ", "マニラ"],
-            answer: "バンコク"
+            text: "東南アジアなどの熱帯地域で広く栽培されている、天然ゴムの原料となる作物は？",
+            choices: ["ゴムの木", "綿花", "茶", "小麦"],
+            answer: "ゴムの木"
+        },
+        {
+            id: "asia4",
+            text: "インドで多くの人々が信仰している宗教は？",
+            choices: ["イスラーム", "ヒンドゥー教", "キリスト教", "仏教"],
+            answer: "ヒンドゥー教"
+        },
+        {
+            id: "asia5",
+            text: "西アジアで多く産出され、日本も多くを輸入している資源は？",
+            choices: ["石油", "鉄鉱石", "石炭", "ボーキサイト"],
+            answer: "石油"
+        },
+        {
+            id: "asia6",
+            text: "中国で人口や大都市が特に集中しているのは、国土のどの地域？",
+            choices: ["東部", "西部", "北西部", "チベット高原"],
+            answer: "東部"
+        },
+        {
+            id: "asia7",
+            text: "中国の沿海部に設けられ、外国企業や資本を積極的に受け入れて経済発展の拠点となった地域を何という？",
+            choices: ["経済特区", "自由貿易協定", "工業団地", "排他的経済水域"],
+            answer: "経済特区"
+        },
+        {
+            id: "asia8",
+            text: "東南アジア諸国連合を表す略称は？",
+            choices: ["EU", "ASEAN", "APEC", "OPEC"],
+            answer: "ASEAN"
+        },
+        {
+            id: "asia9",
+            text: "インドで発達している産業として特に有名なものは？",
+            choices: ["情報通信技術産業", "林業", "漁業", "石油採掘業"],
+            answer: "情報通信技術産業"
+        },
+        {
+            id: "asia10",
+            text: "西アジアや中央アジアなどの乾燥地域で、家畜とともに移動しながら生活する牧畜を何という？",
+            choices: ["酪農", "遊牧", "混合農業", "園芸農業"],
+            answer: "遊牧"
         }
     ],
 
     europe: [
         {
             id: "europe1",
-            text: "フランスの首都は？",
-            choices: ["パリ", "ローマ", "ベルリン"],
-            answer: "パリ"
+            text: "ヨーロッパ南部に広がる海は？",
+            choices: ["地中海", "カリブ海", "紅海", "ベーリング海"],
+            answer: "地中海"
         },
         {
             id: "europe2",
-            text: "イタリアの首都は？",
-            choices: ["ミラノ", "ローマ", "ナポリ"],
-            answer: "ローマ"
+            text: "ヨーロッパ西部が比較的温暖な気候になることに影響している海流は？",
+            choices: ["黒潮", "北大西洋海流", "親潮", "ペルー海流"],
+            answer: "北大西洋海流"
         },
         {
             id: "europe3",
-            text: "ドイツの首都は？",
-            choices: ["ベルリン", "ミュンヘン", "ハンブルク"],
-            answer: "ベルリン"
+            text: "地中海沿岸で盛んに栽培されている作物は？",
+            choices: ["オリーブ", "稲", "天然ゴム", "カカオ"],
+            answer: "オリーブ"
+        },
+        {
+            id: "europe4",
+            text: "作物の栽培と家畜の飼育を組み合わせて行う農業を何という？",
+            choices: ["混合農業", "遊牧", "焼畑農業", "酪農"],
+            answer: "混合農業"
+        },
+        {
+            id: "europe5",
+            text: "ヨーロッパの国々を中心につくられた政治・経済的な統合を進める組織は？",
+            choices: ["ASEAN", "EU", "OPEC", "AU"],
+            answer: "EU"
+        },
+        {
+            id: "europe6",
+            text: "EUの多くの国で使用されている共通通貨は？",
+            choices: ["ドル", "ポンド", "ユーロ", "ルーブル"],
+            answer: "ユーロ"
+        },
+        {
+            id: "europe7",
+            text: "ドイツ西部に位置し、石炭を利用して工業が発達した地域は？",
+            choices: ["ルール地方", "シリコンバレー", "五大湖沿岸", "東北地方"],
+            answer: "ルール地方"
+        },
+        {
+            id: "europe8",
+            text: "ヨーロッパで広く信仰されている宗教は？",
+            choices: ["キリスト教", "ヒンドゥー教", "仏教", "神道"],
+            answer: "キリスト教"
+        },
+        {
+            id: "europe9",
+            text: "ヨーロッパ北部のスカンディナビア半島などでみられる、氷河によって形成された海岸地形は？",
+            choices: ["三角州", "フィヨルド", "扇状地", "砂州"],
+            answer: "フィヨルド"
+        },
+        {
+            id: "europe10",
+            text: "ヨーロッパで国境を越えて人や物の移動が活発になった大きな要因は？",
+            choices: ["EUによる地域統合", "鎖国政策", "モンスーン", "砂漠化"],
+            answer: "EUによる地域統合"
         }
-    ]
+    ],
 };
 
 
@@ -284,6 +369,9 @@ function startAreaQuiz(area) {
 
 //問題表示、また選択肢を押せるようにする
 function showQuestion() {
+    //パネルが光らないようにしておく
+    quizScreen.classList.remove("correctFlash");
+
     const currentQuestion = selectedQuestions[currentQuestionIndex];
 
     //何問目か
@@ -373,7 +461,17 @@ function checkAnswer(selectedAnswer, selectedButton) {
     const currentQuestion = selectedQuestions[currentQuestionIndex];
     if (selectedAnswer === currentQuestion.answer) {
         //〇を表示
-        result.textContent = "〇 DATA COLLECTED";
+        result.innerHTML = `
+    <span class="correctMark">〇</span>
+    <span class="correctText en">DATA COLLECTED</span>
+`;
+        //画面全体を光らせる
+        quizScreen.classList.remove("correctFlash");
+        void quizScreen.offsetWidth;
+        quizScreen.classList.add("correctFlash");
+        //パーティクル
+        createParticles();
+
         result.className = "correct";
         selectedButton.className = "correctButton";
 
@@ -418,7 +516,59 @@ function checkAnswer(selectedAnswer, selectedButton) {
     skipButton.disabled = true;
 }
 
+//正解したときのエフェクトを作る
+function createParticles() {
 
+    const particleCount = 30;
+    const distance = 500;
+
+    for (let i = 0; i < particleCount; i++) {
+
+        const particle = document.createElement("span");
+        particle.className = "particle";
+
+        // 中央からスタート
+        particle.style.left = "50%";
+        particle.style.top = "50%";
+
+        // 360度を粒の数で均等に分ける
+        const angle =
+            (360 / particleCount) * i;
+
+        // 度 → ラジアンに変換
+        const radian =
+            angle * Math.PI / 180;
+
+        // 飛んでいく方向を計算
+        const moveX =
+            Math.cos(radian) * distance;
+
+        const moveY =
+            Math.sin(radian) * distance;
+
+        particle.style.setProperty(
+            "--moveX",
+            `${moveX}px`
+        );
+
+        particle.style.setProperty(
+            "--moveY",
+            `${moveY}px`
+        );
+
+        // 粒の大きさ
+        const size = 23;
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        particleArea.appendChild(particle);
+
+        setTimeout(function () {
+            particle.remove();
+        }, 900);
+    }
+}
 
 //次へが押されたら次の問題表示、最後だったらロード画面からの結果表示
 nextButton.addEventListener("click", function () {
@@ -491,7 +641,7 @@ nextButton.addEventListener("click", function () {
                                 stars[i].classList.add("starEarned");
                             }, i * 400);
                         }
-                    }, 1500);
+                    }, 500);
 
                     //全問正解だったら
                     if (score === selectedQuestions.length) {
