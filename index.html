@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -21,43 +23,125 @@
         <button id="startButton" class="en">MISSION START</button>
     </div>
     <div id="mapScreen">
-        <h2 id="selectAreaMessage" class="en">SELECT AREA</h2>
-        <p class="mapMessage jp">データを収集する地域を選択してください。</p>
-        <div id="areaButtons">
-            <div class="areaItem">
-                <button id="basicButton" class="jp">地球基礎</button>
+
+        <h2 class="en">SELECT AREA</h2>
+        <p class="mapMessage jp">
+            データを収集する地域を選択してください。
+        </p>
+
+        <div id="worldMap">
+
+            <!-- 世界地図 -->
+            <img src="images/world-map.png" id="worldMapImage" alt="世界地図">
+
+            <!-- 地球基礎 -->
+            <div id="basicArea" class="mapArea">
+                <button id="basicButton" class="mapAreaButton jp">
+                    地球基礎
+                </button>
+
                 <div class="areaProgressBar">
                     <div id="basicProgress" class="areaProgressFill"></div>
                 </div>
-                <p id="basicPercent" class="en">0%</p>
+
+                <p id="basicPercent" class="areaPercent en">0%</p>
             </div>
-            <div class="areaItem">
-                <button id="japanButton" class="jp">日本</button>
+
+
+            <!-- 日本 -->
+            <div id="japanArea" class="mapArea">
+                <button id="japanButton" class="mapAreaButton jp">
+                    日本
+                </button>
+
                 <div class="areaProgressBar">
                     <div id="japanProgress" class="areaProgressFill"></div>
                 </div>
-                <p id="japanPercent" class="en">0%</p>
+
+                <p id="japanPercent" class="areaPercent en">0%</p>
             </div>
-            <div class="areaItem">
-                <button id="asiaButton" class="jp">アジア</button>
+
+
+            <!-- アジア -->
+            <div id="asiaArea" class="mapArea">
+                <button id="asiaButton" class="mapAreaButton jp">
+                    アジア
+                </button>
+
                 <div class="areaProgressBar">
-                    <div id="asiaProgress" class ="areaProgressFill"></div>
+                    <div id="asiaProgress" class="areaProgressFill"></div>
                 </div>
-                <p id="asiaPercent" class="en">0%</p>
+
+                <p id="asiaPercent" class="areaPercent en">0%</p>
             </div>
-            <div class="areaItem">
-                <button id="europeButton" class="jp">ヨーロッパ</button>
+
+
+            <!-- ヨーロッパ -->
+            <div id="europeArea" class="mapArea">
+                <button id="europeButton" class="mapAreaButton jp">
+                    ヨーロッパ
+                </button>
+
                 <div class="areaProgressBar">
                     <div id="europeProgress" class="areaProgressFill"></div>
                 </div>
-                <p id="europePercent" class="en">0%</p>
+
+                <p id="europePercent" class="areaPercent en">0%</p>
             </div>
 
-            <button class="jp lockedArea" disabled>アフリカ🔒</button>
-            <button class="jp lockedArea" disabled>北アメリカ🔒</button>
-            <button class="jp lockedArea" disabled>南アメリカ🔒</button>
-            <button class="jp lockedArea" disabled>オセアニア🔒</button>
+
+            <div id="africaArea" class="mapArea">
+                <button id="africaButton" class="mapAreaButton jp">
+                    アフリカ
+                </button>
+
+                <div class="areaProgressBar">
+                    <div id="africaProgress" class="areaProgressFill"></div>
+                </div>
+
+                <p id="africaPercent" class="areaPercent en">0%</p>
+            </div>
+
+            <div id="northAmericaArea" class="mapArea">
+                <button id="northAmericaButton" class="mapAreaButton jp">
+                    北アメリカ
+                </button>
+
+                <div class="areaProgressBar">
+                    <div id="northAmericaProgress" class="areaProgressFill"></div>
+                </div>
+
+                <p id="northAmericaPercent" class="areaPercent en">0%</p>
+            </div>
+
+
+            <div id="southAmericaArea" class="mapArea">
+                <button id="southAmericaButton" class="mapAreaButton jp">
+                    南アメリカ
+                </button>
+
+                <div class="areaProgressBar">
+                    <div id="southAmericaProgress" class="areaProgressFill"></div>
+                </div>
+
+                <p id="southAmericaPercent" class="areaPercent en">0%</p>
+            </div>
+
+
+            <div id="oceaniaArea" class="mapArea">
+                <button id="oceaniaButton" class="mapAreaButton jp">
+                    オセアニア
+                </button>
+
+                <div class="areaProgressBar">
+                    <div id="oceaniaProgress" class="areaProgressFill"></div>
+                </div>
+
+                <p id="oceaniaPercent" class="areaPercent en">0%</p>
+            </div>
+
         </div>
+
     </div>
 
     <div id="quizScreen">
@@ -74,7 +158,7 @@
             <button id="choice4"></button>
         </div>
         <button id="skipButton" class="en">SKIP</button>
-        
+
         <p id="result"></p>
         <div id="progressArea">
             <p class="en">DATA COLLECTION</p>
@@ -87,7 +171,7 @@
             <button id="nextButton" class="en">NEXT</button>
         </div>
         <div id="particleArea"></div>
-        
+
     </div>
     <div id="analyzingScreen">
         <h1 id="analyzingTitle">

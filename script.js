@@ -16,6 +16,23 @@ const asiaPercent = document.getElementById("asiaPercent");
 const europeButton = document.getElementById("europeButton");
 const europeProgress = document.getElementById("europeProgress");
 const europePercent = document.getElementById("europePercent");
+
+const africaButton = document.getElementById("africaButton");
+const northAmericaButton = document.getElementById("northAmericaButton");
+const southAmericaButton = document.getElementById("southAmericaButton");
+const oceaniaButton = document.getElementById("oceaniaButton");
+
+const africaProgress = document.getElementById("africaProgress");
+const africaPercent = document.getElementById("africaPercent");
+
+const northAmericaProgress = document.getElementById("northAmericaProgress");
+const northAmericaPercent = document.getElementById("northAmericaPercent");
+
+const southAmericaProgress = document.getElementById("southAmericaProgress");
+const southAmericaPercent = document.getElementById("southAmericaPercent");
+
+const oceaniaProgress = document.getElementById("oceaniaProgress");
+const oceaniaPercent = document.getElementById("oceaniaPercent");
 let areaResults = {
     basic: null,
     japan: null,
@@ -27,7 +44,11 @@ let clearedQuestions = {
     basic: [],
     japan: [],
     asia: [],
-    europe: []
+    europe: [],
+    africa: [],
+    northAmerica: [],
+    southAmerica: [],
+    oceania: []
 };
 
 const quizScreen = document.getElementById("quizScreen");
@@ -321,6 +342,254 @@ const questionData = {
             answer: "EUによる地域統合"
         }
     ],
+    africa: [
+        {
+            id: "africa1",
+            text: "アフリカ北部に広がる、世界最大級の砂漠は？",
+            choices: ["ゴビ砂漠", "サハラ砂漠", "アタカマ砂漠", "カラハリ砂漠"],
+            answer: "サハラ砂漠"
+        },
+        {
+            id: "africa2",
+            text: "アフリカ北部を流れ、地中海に注ぐ長大な河川は？",
+            choices: ["ナイル川", "アマゾン川", "ライン川", "メコン川"],
+            answer: "ナイル川"
+        },
+        {
+            id: "africa3",
+            text: "赤道付近のコンゴ盆地を中心に広がる気候は？",
+            choices: ["熱帯雨林気候", "砂漠気候", "地中海性気候", "西岸海洋性気候"],
+            answer: "熱帯雨林気候"
+        },
+        {
+            id: "africa4",
+            text: "サハラ砂漠の南側に広がり、砂漠化が問題となっている地域を何という？",
+            choices: ["サヘル", "パンパ", "ツンドラ", "シベリア"],
+            answer: "サヘル"
+        },
+        {
+            id: "africa5",
+            text: "西アフリカなどで多く栽培され、チョコレートの原料となる農作物は？",
+            choices: ["カカオ", "小麦", "てんさい", "ぶどう"],
+            answer: "カカオ"
+        },
+        {
+            id: "africa6",
+            text: "東アフリカの高地などで栽培が盛んな農作物は？",
+            choices: ["コーヒー", "じゃがいも", "大豆", "てんさい"],
+            answer: "コーヒー"
+        },
+        {
+            id: "africa7",
+            text: "南アフリカ共和国で産出が多い鉱産資源として知られているものは？",
+            choices: ["金", "天然ゴム", "木材", "綿花"],
+            answer: "金"
+        },
+        {
+            id: "africa8",
+            text: "アフリカの国々の多くで、公用語として英語やフランス語などが使われる背景として関係が深いものは？",
+            choices: ["ヨーロッパ諸国による植民地支配", "モンスーンの影響", "EUの成立", "稲作の普及"],
+            answer: "ヨーロッパ諸国による植民地支配"
+        },
+        {
+            id: "africa9",
+            text: "アフリカで人口増加率が高い国が多いことによって生じる課題として適切なものは？",
+            choices: ["食料や教育などの不足", "人口が急激にゼロになる", "農地が不要になる", "都市人口が減少する"],
+            answer: "食料や教育などの不足"
+        },
+        {
+            id: "africa10",
+            text: "アフリカの国々で、特定の農産物や鉱産資源の輸出に経済を大きく依存する状態を何という？",
+            choices: ["モノカルチャー経済", "混合農業", "地域統合", "自給的農業"],
+            answer: "モノカルチャー経済"
+        }
+    ],
+    northAmerica: [
+        {
+            id: "northAmerica1",
+            text: "北アメリカ大陸の西部を南北に走る山脈は？",
+            choices: ["ロッキー山脈", "アルプス山脈", "ヒマラヤ山脈", "ウラル山脈"],
+            answer: "ロッキー山脈"
+        },
+        {
+            id: "northAmerica2",
+            text: "アメリカとカナダの国境付近に位置する大きな湖の集まりを何という？",
+            choices: ["五大湖", "カスピ海", "バイカル湖", "アラル海"],
+            answer: "五大湖"
+        },
+        {
+            id: "northAmerica3",
+            text: "アメリカ中央部に広がる大平原を何という？",
+            choices: ["グレートプレーンズ", "パンパ", "サヘル", "シベリア"],
+            answer: "グレートプレーンズ"
+        },
+        {
+            id: "northAmerica4",
+            text: "アメリカで、大規模な農地で機械を利用して穀物を生産する農業を何という？",
+            choices: ["企業的穀物農業", "遊牧", "焼畑農業", "地中海式農業"],
+            answer: "企業的穀物農業"
+        },
+        {
+            id: "northAmerica5",
+            text: "アメリカ中西部で、とうもろこしの栽培が盛んな地域を何という？",
+            choices: ["コーンベルト", "サンベルト", "シリコンバレー", "メガロポリス"],
+            answer: "コーンベルト"
+        },
+        {
+            id: "northAmerica6",
+            text: "アメリカ南部から西部にかけて、人口や産業が成長してきた地域を何という？",
+            choices: ["サンベルト", "コーンベルト", "スノーベルト", "ルール地方"],
+            answer: "サンベルト"
+        },
+        {
+            id: "northAmerica7",
+            text: "アメリカ西海岸にあり、情報通信技術産業が集積している地域は？",
+            choices: ["シリコンバレー", "ルール地方", "五大湖沿岸", "太平洋ベルト"],
+            answer: "シリコンバレー"
+        },
+        {
+            id: "northAmerica8",
+            text: "アメリカの農業の特徴として適切なものは？",
+            choices: ["地域の自然条件に合わせた農業が行われている", "全国で同じ作物だけを栽培している", "農業では機械をほとんど使わない", "すべての農産物を輸入している"],
+            answer: "地域の自然条件に合わせた農業が行われている"
+        },
+        {
+            id: "northAmerica9",
+            text: "アメリカの人口構成の特徴として適切なものは？",
+            choices: ["さまざまな民族的背景をもつ人々が暮らしている", "移民を一度も受け入れたことがない", "人口のほぼすべてが農村に住んでいる", "民族的背景が完全に同じである"],
+            answer: "さまざまな民族的背景をもつ人々が暮らしている"
+        },
+        {
+            id: "northAmerica10",
+            text: "アメリカ・カナダ・メキシコの間で経済的な結びつきが強い理由の一つは？",
+            choices: ["貿易協定によって貿易が活発である", "3か国がEUに加盟している", "3か国が同じ通貨を使用している", "国境を越えた貿易が禁止されている"],
+            answer: "貿易協定によって貿易が活発である"
+        }
+    ],
+    southAmerica: [
+        {
+            id: "southAmerica1",
+            text: "南アメリカ大陸の西部を南北に走る山脈は？",
+            choices: ["アンデス山脈", "ロッキー山脈", "アルプス山脈", "ヒマラヤ山脈"],
+            answer: "アンデス山脈"
+        },
+        {
+            id: "southAmerica2",
+            text: "南アメリカを流れ、世界最大級の流域面積をもつ河川は？",
+            choices: ["アマゾン川", "ナイル川", "ミシシッピ川", "ライン川"],
+            answer: "アマゾン川"
+        },
+        {
+            id: "southAmerica3",
+            text: "アマゾン川流域に広がる代表的な植生は？",
+            choices: ["熱帯雨林", "タイガ", "ツンドラ", "ステップ"],
+            answer: "熱帯雨林"
+        },
+        {
+            id: "southAmerica4",
+            text: "アルゼンチンを中心に広がる草原を何という？",
+            choices: ["パンパ", "サヘル", "ツンドラ", "プレーリー"],
+            answer: "パンパ"
+        },
+        {
+            id: "southAmerica5",
+            text: "ブラジルで生産が盛んな農産物は？",
+            choices: ["コーヒー", "小麦", "てんさい", "オリーブ"],
+            answer: "コーヒー"
+        },
+        {
+            id: "southAmerica6",
+            text: "ブラジルで生産が盛んで、家畜の飼料などにも利用される農作物は？",
+            choices: ["大豆", "茶", "ライ麦", "なつめやし"],
+            answer: "大豆"
+        },
+        {
+            id: "southAmerica7",
+            text: "チリで多く産出される鉱産資源は？",
+            choices: ["銅", "石炭", "ボーキサイト", "天然ガス"],
+            answer: "銅"
+        },
+        {
+            id: "southAmerica8",
+            text: "ブラジルの公用語は？",
+            choices: ["ポルトガル語", "スペイン語", "英語", "フランス語"],
+            answer: "ポルトガル語"
+        },
+        {
+            id: "southAmerica9",
+            text: "アマゾンの熱帯雨林で問題となっていることは？",
+            choices: ["森林伐採", "氷河の拡大", "永久凍土の増加", "砂漠への降雪"],
+            answer: "森林伐採"
+        },
+        {
+            id: "southAmerica10",
+            text: "南アメリカの多くの国でスペイン語が使われていることに大きく関係する歴史的背景は？",
+            choices: ["スペインによる植民地支配", "EUへの加盟", "モンスーンの影響", "産業革命の発祥"],
+            answer: "スペインによる植民地支配"
+        }
+    ],
+    oceania: [
+        {
+            id: "oceania1",
+            text: "オセアニアで最も面積が大きい国は？",
+            choices: ["オーストラリア", "ニュージーランド", "フィジー", "パプアニューギニア"],
+            answer: "オーストラリア"
+        },
+        {
+            id: "oceania2",
+            text: "オーストラリアの内陸部に広くみられる気候は？",
+            choices: ["乾燥気候", "熱帯雨林気候", "西岸海洋性気候", "ツンドラ気候"],
+            answer: "乾燥気候"
+        },
+        {
+            id: "oceania3",
+            text: "オーストラリアで大規模に飼育され、羊毛の生産にも利用される家畜は？",
+            choices: ["羊", "豚", "水牛", "トナカイ"],
+            answer: "羊"
+        },
+        {
+            id: "oceania4",
+            text: "オーストラリアで多く産出され、日本にも多く輸出されている鉱産資源は？",
+            choices: ["鉄鉱石", "天然ゴム", "綿花", "木材"],
+            answer: "鉄鉱石"
+        },
+        {
+            id: "oceania5",
+            text: "オーストラリア北東部の海岸に広がる世界最大級のサンゴ礁は？",
+            choices: ["グレートバリアリーフ", "グレートプレーンズ", "グレートディバイディング山脈", "グランドキャニオン"],
+            answer: "グレートバリアリーフ"
+        },
+        {
+            id: "oceania6",
+            text: "オーストラリアの先住民を何という？",
+            choices: ["アボリジナルピープル", "マオリ", "イヌイット", "サーミ"],
+            answer: "アボリジナルピープル"
+        },
+        {
+            id: "oceania7",
+            text: "ニュージーランドの先住民を何という？",
+            choices: ["マオリ", "イヌイット", "アボリジニ", "サーミ"],
+            answer: "マオリ"
+        },
+        {
+            id: "oceania8",
+            text: "ニュージーランドで盛んな農業として適切なものは？",
+            choices: ["酪農や牧羊", "稲作中心の農業", "焼畑農業のみ", "なつめやし栽培"],
+            answer: "酪農や牧羊"
+        },
+        {
+            id: "oceania9",
+            text: "オーストラリアの人口が特に集中している地域は？",
+            choices: ["東部・南東部の沿岸地域", "中央部の砂漠地域", "内陸部全体", "北西部だけ"],
+            answer: "東部・南東部の沿岸地域"
+        },
+        {
+            id: "oceania10",
+            text: "オーストラリアがアジア諸国との経済的な結びつきを強めている理由として適切なものは？",
+            choices: ["鉱産資源や農産物の貿易が盛んだから", "EUに加盟しているから", "すべて同じ通貨を使っているから", "貿易を禁止しているから"],
+            answer: "鉱産資源や農産物の貿易が盛んだから"
+        }
+    ],
 };
 
 
@@ -347,6 +616,21 @@ asiaButton.addEventListener("click", function () {
 //EUROPEが押されたら問題表示
 europeButton.addEventListener("click", function () {
     startAreaQuiz("europe");
+});
+africaButton.addEventListener("click", function () {
+    startAreaQuiz("africa");
+});
+
+northAmericaButton.addEventListener("click", function () {
+    startAreaQuiz("northAmerica");
+});
+
+southAmericaButton.addEventListener("click", function () {
+    startAreaQuiz("southAmerica");
+});
+
+oceaniaButton.addEventListener("click", function () {
+    startAreaQuiz("oceania");
 });
 
 //エリアからランダムに3問選んで問題表示
@@ -706,4 +990,8 @@ restartButton.addEventListener("click", function () {
     updateAreaProgress("japan", japanProgress, japanPercent);
     updateAreaProgress("asia", asiaProgress, asiaPercent);
     updateAreaProgress("europe", europeProgress, europePercent);
+    updateAreaProgress("africa", africaProgress, africaPercent);
+    updateAreaProgress("northAmerica", northAmericaProgress, northAmericaPercent);
+    updateAreaProgress("southAmerica", southAmericaProgress, southAmericaPercent);
+    updateAreaProgress("oceania", oceaniaProgress, oceaniaPercent);
 });

@@ -43,49 +43,197 @@ button{
     margin:10px;
     transition:color 0.3s;
 }
-#mapScreen{
-    display:none;
-    width:700px;
-    max-width:90%;
-    min-height:500px;
-    margin:40px auto;
-    padding:30px;
-    box-sizing:border-box;
-    background:rgba(0,10,15,0.82);
-    border:2px solid #00ff99;
-    border-radius:20px;
-    box-shadow:0 0 10px #00ff99,
-    0 0 30px rgba(0,255,153,0.4);
-    text-align:center;
+/*地域選択画面*/
+#mapScreen {
+    display: none;
+
+    width: 900px;
+    max-width: 95%;
+
+    margin: 30px auto;
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    background: rgba(0, 10, 20, 0.9);
+
+    border: 2px solid #00ff99;
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 10px #00ff99,
+        0 0 25px rgba(0, 255, 153, 0.4);
+
+    text-align: center;
 }
-.areaProgressBar{
-    width:280px;
-    max-width:90%;
-    height:8px;
-    margin:5px auto;
-    background:rgba(255,255,255,0.15);
-    border-radius:10px;
-    overflow:hidden;
+/*世界地図を入れる*/
+#worldMap {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 20px auto 0;
 }
-.areaProgressFill{
-    width:0%;
-    height:100%;
-    background:#00bfff;
-    transition:width 0.5s;
+/*世界地図の情報*/
+#worldMapImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 12px;
+
+    opacity: 0.9;
 }
-#basicPercent,#japanPercent,#asiaPercent,#europePercent{
-    margin:5px 0 15px;
-    font-size:12px;
-    color:#00d9ff;
+/*地域ボタン・進捗バー・％のセット*/
+.mapArea {
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    width: 120px;
 }
-.lockedArea{
-    color:#777;
-    border-color:#555;
-    background:#111;
-    opacity:0.6;
-    cursor:not-allowed;
-    text-shadow:none;
-    box-shadow:none;
+/*地図上の位置*/
+#basicArea {
+    left: 50%;
+    top: 9%;
+}
+
+#japanArea {
+    left: 87%;
+    top: 41%;
+}
+
+#asiaArea {
+    left: 72%;
+    top: 36%;
+}
+
+#europeArea {
+    left: 53%;
+    top: 29%;
+}
+#africaArea {
+    left: 52%;
+    top: 56%;
+}
+
+#northAmericaArea {
+    left: 20%;
+    top: 34%;
+}
+
+#southAmericaArea {
+    left: 31%;
+    top: 69%;
+}
+
+#oceaniaArea {
+    left: 82%;
+    top: 73%;
+}
+/*地域ボタン*/
+.mapAreaButton {
+    width: auto;
+    min-width: 90px;
+
+    padding: 8px 12px;
+    margin: 0;
+
+    font-size: 14px;
+
+    background: rgba(0, 20, 20, 0.9);
+
+    color: #00ff99;
+
+    border: 1px solid #00ff99;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 5px rgba(0, 255, 153, 0.5);
+
+    transition:
+        box-shadow 0.2s,
+        background 0.2s,
+        color 0.2s;
+}
+/*地域ボタンにカーソルをのせたとき*/
+.mapAreaButton:not(:disabled):hover {
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px #00ff99,
+        0 0 18px #00ff99;
+}
+/*進捗バー*/
+.areaProgressBar {
+    width: 100px;
+    height: 6px;
+
+    margin: 6px auto 2px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border: 1px solid rgba(0, 217, 255, 0.5);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+/*進捗バーの中身*/
+.areaProgressFill {
+    width: 0%;
+    height: 100%;
+
+    background: #00d9ff;
+
+    box-shadow:
+        0 0 5px #00d9ff,
+        0 0 10px #00bfff;
+
+    transition: width 0.5s;
+}
+/*％表示*/
+.areaPercent {
+    margin: 2px 0 0;
+
+    font-size: 11px;
+
+    color: #00d9ff;
+}
+
+/*スマホ対応*/
+@media (max-width: 600px) {
+
+    #mapScreen {
+        padding: 12px;
+    }
+
+    .mapArea {
+        width: 80px;
+    }
+
+    .mapAreaButton {
+        min-width: 70px;
+        padding: 5px 7px;
+        font-size: 11px;
+    }
+
+    .areaProgressBar {
+        width: 70px;
+        height: 5px;
+    }
+
+    .areaPercent {
+        font-size: 9px;
+    }
 }
 #choiceArea button{
     font-family:"Zen Kaku Gothic New",monospace;
