@@ -1,4 +1,23 @@
+:root {
+    --green: #00ff99;
+    --green-light: #00ff88;
 
+    --blue: #00d9ff;
+    --blue-dark: #00bfff;
+
+    --red: #ff4444;
+
+    --gold: #FFD700;
+    --gold-light: #fff4a3;
+    --purple: #C65CFF;
+
+    --white: #ffffff;
+    --gray: #666666;
+
+    --dark: #111;
+
+    --panel-bg: rgba(0, 10, 15, 0.82);
+}
 body{
     margin:0;
 
@@ -30,41 +49,100 @@ h1{
 p{
     font-size:20px;
 }
+/*パネルの共通スタイル*/
+.panel {
+    width: 90%;
+    max-width: 700px;
+    min-height: 500px;
 
-button{
-    font-size:18px;
-    padding:15px;
-    background: #111;
-    color:#00ff99;
-    border: 2px solid #00ff99;
-    border-radius:10px;
+    margin: 40px auto;
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    background: var(--panel-bg);
+
+    border: 2px solid var(--green);
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 10px var(--green),
+        0 0 30px rgba(0, 255, 153, 0.4);
+
+    text-align: center;
+}
+/*ボタンの共通スタイル*/
+button {
+    font-size: 18px;
+    padding: 15px;
+
+    background: var(--dark);
+    color: var(--green);
+
+    border: 2px solid var(--green);
+    border-radius: 10px;
+
     cursor: pointer;
-    width:280px;
-    margin:10px;
-    transition:color 0.3s;
+
+    width: 280px;
+    margin: 10px;
+
+    transition:
+        color 0.3s,
+        background-color 0.3s,
+        box-shadow 0.3s,
+        text-shadow 0.3s;
+}
+/*ホバーの共通スタイル*/
+button:not(:disabled):hover {
+    color: white;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px white;
+}
+/*EARTH INVASION*/
+#gameTitle{
+    
+    color: var(--green);
+    font-size:64px;
+    letter-spacing:6px;
+    text-shadow:
+        0 0 5px var(--green),
+        0 0 10px var(--green),
+        0 0 20px var(--green),
+        0 0 40px var(--green);
+    animation: neonPulse 2s infinite alternate;
+        
+}
+/*あなたの使命~*/
+#missionText{
+    color:white;
+    font-size:18px;
+    letter-spacing:3px;
+    margin-bottom:40px;
+    opacity:0.8;
+}
+/*EARTH INVASIONを光らせる*/
+@keyframes neonPulse{
+    from{
+        text-shadow:0 0 5px var(--green),
+        0 0 10px var(--green),
+        0 0 20px var(--green);
+    }
+    to{
+        text-shadow:
+        0 0 10px var(--green),
+        0 0 20px var(--green),
+        0 0 40px var(--green),
+        0 0 70px var(--green);
+    }
 }
 /*地域選択画面*/
 #mapScreen {
     display: none;
-
-    width: 900px;
-    max-width: 95%;
-
-    margin: 30px auto;
-    padding: 25px;
-
-    box-sizing: border-box;
-
-    background: rgba(0, 10, 20, 0.9);
-
-    border: 2px solid #00ff99;
-    border-radius: 20px;
-
-    box-shadow:
-        0 0 10px #00ff99,
-        0 0 25px rgba(0, 255, 153, 0.4);
-
-    text-align: center;
+    max-width: 900px;
 }
 /*世界地図を入れる*/
 #worldMap {
@@ -101,17 +179,14 @@ button{
     left: 50%;
     top: 9%;
 }
-
 #japanArea {
     left: 87%;
     top: 41%;
 }
-
 #asiaArea {
     left: 72%;
     top: 36%;
 }
-
 #europeArea {
     left: 53%;
     top: 29%;
@@ -120,17 +195,14 @@ button{
     left: 52%;
     top: 56%;
 }
-
 #northAmericaArea {
     left: 20%;
     top: 34%;
 }
-
 #southAmericaArea {
     left: 31%;
     top: 69%;
 }
-
 #oceaniaArea {
     left: 82%;
     top: 73%;
@@ -147,9 +219,9 @@ button{
 
     background: rgba(0, 20, 20, 0.9);
 
-    color: #00ff99;
+    color: var(--green);
 
-    border: 1px solid #00ff99;
+    border: 1px solid var(--green);
     border-radius: 8px;
 
     cursor: pointer;
@@ -162,15 +234,15 @@ button{
         background 0.2s,
         color 0.2s;
 }
-/*地域ボタンにカーソルをのせたとき*/
+/*地域ボタンのホバー*/
 .mapAreaButton:not(:disabled):hover {
     background: rgba(0, 255, 153, 0.15);
 
     color: white;
 
     box-shadow:
-        0 0 8px #00ff99,
-        0 0 18px #00ff99;
+        0 0 8px var(--green),
+        0 0 18px var(--green);
 }
 /*進捗バー*/
 .areaProgressBar {
@@ -192,11 +264,11 @@ button{
     width: 0%;
     height: 100%;
 
-    background: #00d9ff;
+    background: var(--blue);
 
     box-shadow:
-        0 0 5px #00d9ff,
-        0 0 10px #00bfff;
+        0 0 5px var(--blue),
+        0 0 10px var(--blue-dark);
 
     transition: width 0.5s;
 }
@@ -206,171 +278,105 @@ button{
 
     font-size: 11px;
 
-    color: #00d9ff;
+    color: var(--blue);
+}
+/*100％になった時に紫色にする*/
+.areaCompleted {
+    background: var(--purple);
+
+    box-shadow:
+        0 0 5px var(--purple),
+        0 0 10px var(--purple);
+}
+.percentCompleted {
+    color: var(--purple);
+
+    text-shadow:
+        0 0 5px var(--purple),
+        0 0 10px var(--purple);
+}
+.frameCompleted {
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 5px var(--purple),
+        0 0 10px var(--purple);
 }
 
-/*スマホ対応*/
-@media (max-width: 600px) {
-
-    #mapScreen {
-        padding: 12px;
-    }
-
-    .mapArea {
-        width: 80px;
-    }
-
-    .mapAreaButton {
-        min-width: 70px;
-        padding: 5px 7px;
-        font-size: 11px;
-    }
-
-    .areaProgressBar {
-        width: 70px;
-        height: 5px;
-    }
-
-    .areaPercent {
-        font-size: 9px;
-    }
+/*問題画面*/
+/*選択肢のフォント*/
+#choicesArea button {
+    font-family: "Zen Kaku Gothic New", monospace;
 }
-#choiceArea button{
-    font-family:"Zen Kaku Gothic New",monospace;
-}
-
-
+/*正誤・SKIPPED*/
 #result{
     font-family:"Orbitron",sans-serif;
     letter-spacing:2px;
     min-height:30px;
     margin:15px 0;
 }
-
-
+/*MISSIONSTART*/
 #startButton{
-    
     font-size:22px;
     letter-spacing:3px;
 }
-
-button:not(:disabled):hover{
-    color:white;
-    text-shadow:
-    0 0 5px white,
-    0 0 10px white,
-    0 0 20px white;
-    
-    
-}
-#selectAreaMessage{
-    color:#00ff99;
-}
-
+/*問題画面*/
 #quizScreen{
     display:none;
+    position:relative;
+    overflow:hidden;
 }
-
+/*NEXT*/
 #nextButton{
     visibility:hidden;
-    font-family:"Orbitron",sans-serif;
     font-size:20px;
     letter-spacing:3px;
-    color:#00ff99;
-    border:2px solid #00ff99;
-    background:#111;
-    text-shadow:0 0 5px #00ff99;
-}
-#nextButton:hover{
-    color:white;
-    text-shadow:
-    0 0 5px white,
-    0 0 10px white,
-    0 0 20px white;
-}
-#analyzingScreen{
-    display:none;
-}
-#analyzingTitle{
-    font-family:"Orbitron",sans-serif;
-    color:#00d9ff;
-    font-size:48px;
-    letter-spacing:6px;
-    text-shadow:
-    0 0 5px #00d9ff,
-    0 0 10px #00d9ff,
-    0 0 20px #00d9ff,
-    0 0 40px #00d9ff;
-}
-#analysisBar{
-    width:70%;
-    height:20px;
-    margin:20px auto;
-    border:2px solid #00d9ff;
-    border-radius:10px;
-    overflow:hidden;
-    background:rgba(0,255,153,0.1);
-}
-#analysisFill{
-    width:0%;
-    height:100%;
-    background: #00d9ff;
-    box-shadow:0 0 10px #00d9ff,
-    0 0 20px #00d9ff;
-}
-#analysisPercent{
-    font-family:"Orbitron",sans-serif;
-    color:#00d9ff;
+    text-shadow:0 0 5px var(--green);
 }
 
-#resultScreen{
-    display:none;
-}
-#resultMessage{
-    font-family:"Orbitron",sans-serif;
-    color:#00ff99;
-    font-size :24px;
-    letter-spacing:3px;
-    margin-top:20px;
-    text-shadow:
-    0 0 5px #00ff99,
-    0 0 10px #00ff99;
-}
 
+/*問題画面の上のところ*/
+.monitorHeader{
+    display:flex;
+    justify-content:space-between;
+    color:var(--green);
+    font-size:14px;
+    letter-spacing:2px;
+    border-bottom:1px solid var(--green);
+    padding-bottom:10px;
+    margin-bottom:30px;
+}
+/*resultを緑にする*/
 .correct{
-    color: #00ff99;
+    color: var(--green);
     font-weight:bold;
 }
-
+/*resultを赤にする*/
 .incorrect{
     color: red;
     font-weight:bold;
 }
-
+/*正解の選択肢を緑にする*/
 .correctButton{
-    background-color:#00ff99;
+    background-color:var(--green);
     color:black;
 }
-
+/*間違いの選択肢を赤にする*/
 .incorrectButton{
     background-color: red;
 }
-
+/*〇だけ大きくする*/
 .correctMark {
     display: inline-block;
-
     font-size: 42px;
     font-weight: bold;
-
-    color: #00ff88;
-
+    color: var(--green-light);
     text-shadow:
-        0 0 8px #00ff88,
-        0 0 20px #00ff88;
-
+        0 0 8px var(--green-light),
+        0 0 20px var(--green-light);
     animation: correctPop 0.45s ease-out;
 }
-
+/*〇のエフェクト*/
 @keyframes correctPop {
 
     0% {
@@ -388,15 +394,13 @@ button:not(:disabled):hover{
         opacity: 1;
     }
 }
-
+/*DATA COLLECTED*/
 .correctText {
     display: inline-block;
-
     margin-left: 8px;
-
     animation: correctTextIn 0.5s ease-out;
 }
-
+/*DATA COLLECTEDを〇より少し遅れて表示*/
 @keyframes correctTextIn {
 
     0% {
@@ -413,11 +417,11 @@ button:not(:disabled):hover{
         transform: translateX(0);
     }
 }
-
+/*パネルを光らせる*/
 #quizScreen.correctFlash {
     animation: correctScreenFlash 0.5s;
 }
-
+/*パネルを光らせる*/
 @keyframes correctScreenFlash {
 
     0% {
@@ -434,11 +438,7 @@ button:not(:disabled):hover{
         box-shadow: 0 0 0 rgba(0, 255, 136, 0);
     }
 }
-#quizScreen {
-    position: relative;
-    overflow: hidden;
-}
-
+/*正解のエフェクト*/
 #particleArea {
     position: absolute;
     inset: 0;
@@ -446,7 +446,7 @@ button:not(:disabled):hover{
     pointer-events: none;
     overflow: hidden;
 }
-
+/*パーティクル*/
 .particle {
     position: absolute;
 
@@ -455,16 +455,16 @@ button:not(:disabled):hover{
 
     border-radius: 50%;
 
-    background: #00ff88;
+    background: var(--green-light);
 
     box-shadow:
-        0 0 6px #00ff88,
-        0 0 12px #00ff88,
-        0 0 20px #00ff88;
+        0 0 6px var(--green-light),
+        0 0 12px var(--green-light),
+        0 0 20px var(--green-light);
 
     animation: particleBurst 0.9s ease-out forwards;
 }
-
+/*パーティクルがはじける*/
 @keyframes particleBurst {
     0% {
         transform:
@@ -486,123 +486,47 @@ button:not(:disabled):hover{
     }
 }
 
-#startScreen,
-#resultScreen{
-    width:90%;
-    max-width:700px;
-    min-height:500px;
-    margin:40px auto;
-    padding:30px;
-    box-sizing:border-box;
-    background:rgba(0,0,0,0.65);
-    border:2px solid #00ff99;
-    border-radius:20px;
-    
-    box-shadow:
-        0 0 10px #00ff99,
-        0 0 30px rgba(0,255,153,0.4);
-}
 
-#gameTitle{
-    
-    color: #00ff99;
-    font-size:64px;
-    letter-spacing:6px;
-    text-shadow:
-        0 0 5px #00ff99,
-        0 0 10px #00ff99,
-        0 0 20px #00ff99,
-        0 0 40px #00ff99;
-    animation: neonPulse 2s infinite alternate;
-        
-}
- 
-#missionText{
-    color:white;
-    font-size:18px;
-    letter-spacing:3px;
-    margin-bottom:40px;
-    opacity:0.8;
-    font-family:"Orbitron",sans-serif;
-}
-
-@keyframes neonPulse{
-    from{
-        text-shadow:0 0 5px #00ff99,
-        0 0 10px #00ff99,
-        0 0 20px #00ff99;
-    }
-    to{
-        text-shadow:
-        0 0 10px #00ff99,
-        0 0 20px #00ff99,
-        0 0 40px #00ff99,
-        0 0 70px #00ff99;
-    }
-}
-#quizScreen{
-    width:700px;
-    max-width:90%;
-    min-height:500px;
-    margin:40px auto;
-    padding:30px;
-    box-sizing:border-box;
-    background:rgba(0,10,15,0.82);
-    border:2px solid #00ff99;
-    border-radius:15px;
-    box-shadow:
-    0 0 10px #00ff99,
-    0 0 30px rgba(0,255,153,0.4);
-    font-family:"Orbitoron",sans-serif;
-}
-.monitorHeader{
-    display:flex;
-    justify-content:space-between;
-    color:#00ff99;
-    font-size:14px;
-    letter-spacing:2px;
-    border-bottom:1px solid #00ff99;
-    padding-bottom:10px;
-    margin-bottom:30px;
-}
+/*スキップ*/
 #skipButton{
     display:block;
     width:120px;
     padding:7px 12px;
     margin:12px auto;
     font-size:13px;
-    color:#00bfff;
+    color:var(--blue-dark);
     backGround:#111820;
-    border:1px solid #00bfff;
+    border:1px solid var(--blue-dark);
     border-radius:5px;
     cursor:pointer;
     box-shadow:0 0 5px rgba(0,191,255,0.4);
 }
+/*スキップホバー*/
 #skipButton:not(:disabled):hover{
     background:#162630;
-    box-shadow:0 0 8px #00bfff,
+    box-shadow:0 0 8px var(--blue-dark),
     0 0 15px rgba(0,191,255,0.5);
 }
+/*スキップ押せないとき*/
 #skipButton:disabled{
     opacity:0.4;
     cursor:default;
     box-shadow:none;
 }
+/*DATA COLLECTION*/
 #progressArea{
     margin-top:30px;
 }
-
 #progressArea p {
-    color:#00d9ff;
+    color:var(--blue);
     font-size:14px;
     letter-spacing:2px;
 }
-
 #progressBar{
     width:80%;
     height:18px;
     margin:10px auto 25px;
-    border:1px solid #00d9ff;
+    border:1px solid var(--blue);
     border-radius:10px;
     overflow:hidden;
     background:rgba(0,255,153,0.1);
@@ -613,14 +537,14 @@ button:not(:disabled):hover{
     background:linear-gradient(
         90deg,
         #008cff,
-        #00d9ff
+        var(--blue)
     );
     box-shadow:
-    0 0 8px #00bfff,
+    0 0 8px var(--blue-dark),
     0 0 18px rgba(0,191,255,0.8);
     transition:0.6s;
-    
 }
+/*NEXT*/
 #nextButtonArea{
     min-height:70px;
     display:flex;
@@ -628,17 +552,130 @@ button:not(:disabled):hover{
     align-items:center;
 }
 
+
+/*ロード画面*/
+#analyzingScreen{
+    display:none;
+}
+/*ANALYZING...*/
+#analyzingTitle{
+    color:var(--blue);
+    font-size:48px;
+    letter-spacing:6px;
+    text-shadow:
+    0 0 5px var(--blue),
+    0 0 10px var(--blue),
+    0 0 20px var(--blue),
+    0 0 40px var(--blue);
+}
+/*ロードゲージ*/
+#analysisBar{
+    width:70%;
+    height:20px;
+    margin:20px auto;
+    border:2px solid var(--blue);
+    border-radius:10px;
+    overflow:hidden;
+    background:rgba(0,255,153,0.1);
+}
+/*ロードゲージの中身*/
+#analysisFill{
+    width:0%;
+    height:100%;
+    background: var(--blue);
+    box-shadow:0 0 10px var(--blue),
+    0 0 20px var(--blue);
+}
+/* % */
+#analysisPercent{
+    color:var(--blue);
+}
+/*ロードゲージを光らせる*/
+.progressFlash{
+    animation:progressFlash 0.6s;
+}
+@keyframes progressFlash{
+    0%{
+        box-shadow:
+        0 0 5px var(--blue),
+        0 0 10px var(--blue);
+    }
+    50%{
+        box-shadow:
+        0 0 20px var(--blue),
+        0 0 40px var(--blue),
+        0 0 80px var(--blue);
+    }
+    100%{
+        box-shadow:
+        0 0 5px var(--blue),
+        0 0 10px var(--blue);
+    }
+}
+.barFrameFlash{
+    animation:barFrameFlash 0.6s;
+}
+@keyframes barFrameFlash{
+    0% {
+        border-color: var(--blue);
+        box-shadow: 0 0 5px var(--blue);
+    }
+
+    50% {
+        border-color: white;
+
+        box-shadow:
+            0 0 10px var(--blue),
+            0 0 25px var(--blue),
+            0 0 50px var(--blue);
+    }
+
+    100% {
+        border-color: var(--blue);
+        box-shadow: 0 0 5px var(--blue);
+    }
+}
+
+/*結果画面*/
+#resultScreen{
+    display:none;
+}
+/*WE NEED MORE DATAのところ*/
+#resultMessage{
+    color:var(--green);
+    font-size :24px;
+    letter-spacing:3px;
+    margin-top:20px;
+    text-shadow:
+    0 0 5px var(--green),
+    0 0 10px var(--green);
+}
+/*COMPLETEかFAILED*/
 #missionComplete{
     font-size:40px;
     letter-spacing:4px;
     animation:missionBlink 0.8s 3;
     font-family:"Orbitron",sans-serif;
 }
+/*COMPLETEかFAILEDを光らせる*/
+@keyframes missionBlink{
+    0%{
+        opacity:1;
+    }
+    50%{
+        opacity:0.3;
+    }
+    100%{
+        opacity:1;
+    }
+}
+/*SCORE*/
 #scoreText{
-    color:#00ff99;
+    color:var(--green);
     font-size:24px;
     letter-spacing:3px;
 }
+/*☆*/
 #starRating{
     margin:20px 0;
     min-height:90px;
@@ -653,12 +690,13 @@ button:not(:disabled):hover{
         text-shadow 0.3s,
         transform 0.3s;
 }
+/*☆を光らせる*/
 .starEarned{
-    color:#ffd700;
+    color:var(--gold);
     text-shadow:
-        0 0 5px #fff4a3,
-        0 0 10px #ffd700,
-        0 0 20px #ffd700,
+        0 0 5px var(--gold-light),
+        0 0 10px var(--gold),
+        0 0 20px var(--gold),
         0 0 35px #ffd300;
     animation:starPop 0.4s;
 }
@@ -673,144 +711,52 @@ button:not(:disabled):hover{
         transform:scale(1);
     }
 }
-#restartButton{
-    font-size:22px;
-    letter-spacing:3px;
-    color:#00ff99;
-    background:#111;
-    border:2px solid #00ff99;
-    border-radius:10px;
-    text-shadow:0 0 5px #00ff99;
-    transition:
-    background-color 0.3s,
-    color 0.3s,
-    box-shadow 0.3s;
-}
-#restartButton:hover{
-    background:#00ff99;
-    color:black;
-    box-shadow:
-    0 0 10px #00ff99,
-    0 0 20px #00ff99;
-}
 
-@keyframes progressFlash{
-    0%{
-        box-shadow:
-        0 0 5px #00d9ff,
-        0 0 10px #00d9ff;
-    }
-    50%{
-        box-shadow:
-        0 0 20px #00d9ff,
-        0 0 40px #00d9ff,
-        0 0 80px #00d9ff;
-    }
-    100%{
-        box-shadow:
-        0 0 5px #00d9ff,
-        0 0 10px #00d9ff;
-    }
-}
-.progressFlash{
-    animation:progressFlash 0.6s;
-}
-@keyframes barFrameFlash{
-    0% {
-        border-color: #00d9ff;
-        box-shadow: 0 0 5px #00d9ff;
-    }
 
-    50% {
-        border-color: white;
-
-        box-shadow:
-            0 0 10px #00d9ff,
-            0 0 25px #00d9ff,
-            0 0 50px #00d9ff;
-    }
-
-    100% {
-        border-color: #00d9ff;
-        box-shadow: 0 0 5px #00d9ff;
-    }
-}
-.barFrameFlash{
-    animation:barFrameFlash 0.6s;
-}
-@keyframes missionBlink{
-    0%{
-        opacity:1;
-    }
-    50%{
-        opacity:0.3;
-    }
-    100%{
-        opacity:1;
-    }
-}
-@keyframes analysisGlow{
-    0%{
-        box-shadow: 
-        0 0 5px #00ff99,
-        0 0 10px #00ff99;
-    }
-    50%{
-        box-shadow:  
-        0 0 15px #00ff99,
-        0 0 30px #00ff99,
-        0 0 50px #00ff99;
-    }
-    100%{
-        box-shadow:  
-        0 0 5px #00ff99,
-        0 0 10px #00ff99;
-    }
-}
-.analysisGlow{
-    animation:analysisGlow 0.25s;
-}
+/*MISSION COMPLETEを緑にする*/
 .successMission{
-    color:#00ff99;
+    color:var(--green);
     text-shadow:
-        0 0 10px #00ff99,
-        0 0 20px #00ff99,
-        0 0 40px #00ff99;
+        0 0 10px var(--green),
+        0 0 20px var(--green),
+        0 0 40px var(--green);
 }
+/*MISSION FAILEDを赤くする*/
 .failedMission{
-    color: #ff4444;
+    color: var(--red);
 
     text-shadow:
-        0 0 10px #ff4444,
-        0 0 20px #ff4444,
-        0 0 40px #ff4444;
+        0 0 10px var(--red),
+        0 0 20px var(--red),
+        0 0 40px var(--red);
 }
-
+/*間違えた答え*/
 .reviewWrong{
-    color:#ff4444;
+    color:var(--red);
     
 }
+/*正しかった答え*/
 .reviewCorrect{
-    color:#00ff99;
-    
+    color:var(--green);
 }
+/*REVIEW*/
 #reviewArea{
     width:90%;
     max-width:600px;
     margin:30px auto;
 }
 #reviewArea h2{
-    color:#00ff99;
+    color:var(--green);
     font-family:"Orbitron",sans-serif;
     letter-spacing:4px;
     font-size:20px;
     text-shadow:  
-    0 0 5px #00ff99,
-    0 0 10px #00ff99;
+    0 0 5px var(--green),
+    0 0 10px var(--green);
 }
 .reviewItem{
     background:rgba(0,20,15,0.85);
-    border:1px solid #00ff99;
+    border:1px solid var(--green);
     border-radius:15px;
     padding:10px;
     margin:15px 0;
@@ -819,13 +765,29 @@ button:not(:disabled):hover{
         inset 0 0 10px rgba(0, 255, 153, 0.15),
         0 0 8px rgba(0, 255, 153, 0.4);
 }
+/*何問め間違えたか*/
 .reviewNumber{
-    color:#00ff99;
+    color:var(--green);
     font-size:12px;
     letter-spacing:2px;
     border-bottom:1px solid rgba(0,255,153,0.4);
     padding-bottom:5px;
 }
+/*NEW MISSION*/
+#restartButton{
+    font-size:22px;
+    letter-spacing:3px;
+    text-shadow:0 0 5px var(--green);
+}
+#restartButton:hover{
+    background:var(--green);
+    color:black;
+    box-shadow:
+    0 0 10px var(--green),
+    0 0 20px var(--green);
+}
+
+/*スマホ対応*/
 @media (max-width:600px){
     body{
         padding:10px;
@@ -842,6 +804,28 @@ button:not(:disabled):hover{
         padding:20px 15px;
         box-sizing:border-box;
     }
+    #mapScreen {
+        padding: 12px;
+    }
+
+    .mapArea {
+        width: 80px;
+    }
+
+    .mapAreaButton {
+        min-width: 70px;
+        padding: 5px 7px;
+        font-size: 11px;
+    }
+
+    .areaProgressBar {
+        width: 60px;
+        height: 4px;
+    }
+
+    .areaPercent {
+        font-size: 8px;
+    }
     #gameTitle{
         font-size:30px;
         letter-spacing:3px;
@@ -854,10 +838,10 @@ button:not(:disabled):hover{
     }
     button{
         display:block;
-        width:calc(100%-20px);
+        width:calc(100% - 20px);
         max-width:280px;
         font-size:16px;
-        padding:12px;
+        padding:10px;
         box-sizing:border-box;
         margin:10px auto;
         white-space:normal;

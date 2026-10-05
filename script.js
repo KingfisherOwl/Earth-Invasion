@@ -144,39 +144,80 @@ startButton.addEventListener("click", function () {
 //地域のボタンが押されたら問題表示
 //キーと値をセットで取り出し、配列に分割代入
 Object.entries(areaElements).forEach(function ([area, elements]) {
-
     elements.button.addEventListener("click", function () {
         startAreaQuiz(area);
     });
-
 });
 
-//エリアからランダムに3問選んで問題表示
+//エリアからランダムに5問選んで問題表示
 function startAreaQuiz(area) {
     currentArea = area;
     currentQuestions = questionData[area];
-    selectedQuestions = [];
-    while (selectedQuestions.length < 3) {
-        const randomIndex = Math.floor(Math.random() * currentQuestions.length);
-        if (!selectedQuestions.includes(currentQuestions[randomIndex])) {
-            selectedQuestions.push(currentQuestions[randomIndex]);
-        }
+    // まだ正解していない問題を取り出す
+    const unclearedQuestions =
+        currentQuestions.filter(function (question) {
+            return !clearedQuestions[area].includes(question.id);
+        });
+    // まず未正解問題から最大5問選ぶ
+    selectedQuestions =
+        getRandomQuestions(unclearedQuestions, 5);
+    // 5問に足りなかった場合
+    if (selectedQuestions.length < 5) {
+        //地域問題のうち選ばれていないものを取り出す
+        const remainingQuestions =
+            currentQuestions.filter(function (question) {
+                return !selectedQuestions.includes(question);
+            });
+        //あと何問必要か
+        const neededCount =
+            5 - selectedQuestions.length;
+        //選ばれていないものの中からランダムで必要な分だけ
+        const additionalQuestions =
+            getRandomQuestions(
+                remainingQuestions,
+                neededCount
+            );
+        //selectedQuestionsに加える
+        selectedQuestions.push(...additionalQuestions);
     }
+    //これから1問めを表示するため
     currentQuestionIndex = 0;
     score = 0;
     mapScreen.style.display = "none";
     quizScreen.style.display = "block";
+    //問題表示
     showQuestion();
+}
+
+//ランダムに選ぶ関数
+function getRandomQuestions(questions, count) {
+    //コピーで在庫を作成
+    const copiedQuestions = [...questions];
+    //選ばれた問題
+    const selected = [];
+    //必要な数まで在庫がある限り
+    while (
+        selected.length < count &&
+        copiedQuestions.length > 0
+    ) {
+        //ランダムに選んで追加
+        const randomIndex =
+            Math.floor(Math.random() * copiedQuestions.length);
+        selected.push(copiedQuestions[randomIndex]);
+        //選んだら在庫から削除
+        copiedQuestions.splice(randomIndex, 1);
+    }
+    //選ばれた問題を返す
+    return selected;
 }
 
 //問題表示、また選択肢を押せるようにする
 function showQuestion() {
     //パネルが光らないようにしておく
     quizScreen.classList.remove("correctFlash");
-
+    //今の問題
     const currentQuestion = selectedQuestions[currentQuestionIndex];
-
-    //何問目か
+    //上に表示するやつ
     missionNumber.textContent = `MISSION　${currentQuestionIndex + 1} / ${selectedQuestions.length}`;
     //問題文表示
     questionText.textContent = currentQuestion.text;
@@ -468,6 +509,15 @@ function showMissionResult() {
 function showStars() {
     //☆を初期化・場所をあけておく
     starRating.innerHTML = "";
+    //光らせる星の数
+    let earnedStars = 0;
+    if(score === 5){
+        earnedStars = 3;
+    }else if(score >= 3){
+        earnedStars = 2;
+    }else if(score >= 1){
+        earnedStars = 1;
+    }
     //500たったら☆を光らせはじめる
     setTimeout(function () {
         //HTMLとして追加
@@ -480,7 +530,7 @@ function showStars() {
         const stars =
             starRating.querySelectorAll(".star");
         //400おきに☆を1つ光らせる
-        for (let i = 0; i < score; i++) {
+        for (let i = 0; i < earnedStars; i++) {
             setTimeout(function () {
                 stars[i].textContent = "★";
                 //金色に光らせるクラスをつける
@@ -558,4 +608,16 @@ function updateAreaProgress(area, progressBar, percentText) {
     const rate = Math.round((clearedCount / totalCount) * 100);
     progressBar.style.width = `${rate}%`;
     percentText.textContent = `${rate}%`;
+    //100％だったら金色にするクラスをつける
+    //フレームはこの関数に渡していないため,
+    const progressFrame = progressBar.parentElement;
+    if(rate === 100){
+        progressBar.classList.add("areaCompleted");
+        percentText.classList.add("percentCompleted");
+        progressFrame.classList.add("frameCompleted");
+    }else{
+        progressBar.classList.remove("areaCompleted");
+        percentText.classList.remove("percentCompleted");
+        progressFrame.classList.remove("frameCompleted");
+    }
 }
