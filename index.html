@@ -16,17 +16,63 @@
 
 <body>
     <div id="startScreen" class="panel">
+        <button id="creditsButton">CREDITS</button>
         <h1 id="gameTitle" class="en">EARTH INVASION</h1>
         <p id="missionText" class="en">MISSION : COLLECT EARTH DATA</p>
         <p class="gameDescription jp">あなたの使命は地球のデータを集めることです。<br>
             期待しています。</p>
         <button id="startButton" class="en">MISSION START</button>
     </div>
+    <div id="creditsScreen">
+        <div class="creditsPanel">
+            <h2>CREDITS</h2>
+
+            <h3>AI-GENERATED IMAGES</h3>
+
+            <p>
+                本ゲームの世界遺産背景画像は、OpenAIのChatGPTを
+                使用して作成しています。<br>
+                画像は実際の写真ではなく、世界遺産の景観を表現した
+                イメージです。実際の建築物や地形などと異なる場合があります。
+            </p>
+            <h3>AI-ASSISTED QUESTIONS</h3>
+
+            <p>
+                本ゲームの一部の問題は、OpenAIのChatGPTを
+                使用して作成しています。
+            </p>
+            <h3>ATTENTIONS</h3>
+            <p>
+                本ゲームのデータは、端末ごとに保存されます。
+            </p>
+
+            <button id="creditsBackButton">BACK</button>
+        </div>
+    </div>
+    <div id="missionSelectScreen" class="panel">
+
+        <h2 class="en">
+            SELECT MISSION
+        </h2>
+
+        <p class="jp">
+            ミッションを選択してください
+        </p>
+
+        <button id="quizMissionButton" class="jp">
+            地域調査
+        </button>
+
+        <button id="heritageMissionButton" class="jp">
+            世界遺産調査
+        </button>
+
+    </div>
     <div id="mapScreen" class="panel">
 
         <h2 class="en">SELECT AREA</h2>
         <p class="mapMessage jp">
-            データを収集する地域を選択してください。
+            データを収集する地域を選択してください
         </p>
 
         <div id="worldMap">
@@ -141,25 +187,191 @@
             </div>
 
         </div>
-
+        <button id="MapBackButton" class="en">
+            BACK
+        </button>
     </div>
 
+    <div id="heritageMapScreen" class="panel">
+
+        <h2 id="heritageResearch" class="en neonGold">
+            HERITAGE RESEARCH
+        </h2>
+        <div id="earthMysteryInventory">
+            <img class="earthMysteryInventoryGem" src="images/gem.png" alt="地球の神秘">
+            <span class="earthMysteryInventoryName">地球の神秘</span>
+            <span id="earthMysteryCount">× 0</span>
+        </div>
+
+        <p class="jp">
+            調査する地域を選択してください
+        </p>
+
+        <!-- 地域選択 -->
+        <div id="heritageAreaButtons">
+
+            <button class="heritageAreaButton jp" data-area="asia">
+                アジア
+            </button>
+
+            <button class="heritageAreaButton jp" data-area="europe">
+                ヨーロッパ
+            </button>
+
+            <button class="heritageAreaButton jp" data-area="africa">
+                アフリカ
+            </button>
+
+            <button class="heritageAreaButton jp" data-area="northAmerica">
+                北アメリカ
+            </button>
+
+            <button class="heritageAreaButton jp" data-area="southAmerica">
+                南アメリカ
+            </button>
+
+            <button class="heritageAreaButton jp" data-area="oceania">
+                オセアニア
+            </button>
+
+        </div>
+
+        <!-- 世界地図 -->
+        <div id="heritageWorldMap">
+
+            <img id="heritageWorldMapImage" src="images/world-map.png" alt="世界地図">
+
+            <div id="heritageWorldPoints"></div>
+
+        </div>
+        <button id="heritageMapBackButton" class="en">
+            BACK
+        </button>
+
+    </div>
+    <div id="heritageAreaScreen" class="panel">
+
+
+
+        <h2 id="heritageAreaTitle" class="jp"></h2>
+        <p id="heritageCollectedMessage" class="en"></p>
+        <div id="heritageAreaMap">
+
+            <img id="heritageAreaMapImage" src="" alt="">
+
+            <div id="heritageAreaPoints"></div>
+
+        </div>
+        <button id="heritageBackButton" class="en">
+            BACK
+        </button>
+
+    </div>
+    <div id="heritageUnlockScreen" class="panel">
+        <h2 class="en">WORLD HERITAGE LOCKED</h2>
+
+        <h3 id="heritageUnlockName"></h3>
+
+        <p class="jp">地球の神秘を1個消費して解放しますか？</p>
+
+        <p class="earthMysteryText jp">
+        <div class="unlockGemContainer">
+            <img src="images/gem.png" class="unlockGem" alt="地球の神秘">
+            <div class="gemParticles"></div>
+        </div>
+        地球の神秘 × 1
+        </p>
+
+        <button id="heritageUnlockButton" class="en">
+            解放
+        </button>
+
+        <button id="heritageUnlockCancelButton" class="en">
+            キャンセル
+        </button>
+    </div>
+    <div id="heritageQuizScreen" class="panel">
+
+        <div class="monitorHeader en">
+            <span id="heritageQuizName"></span>
+            <span id="heritageQuestionNumber"></span>
+        </div>
+
+        <h2 id="heritageQuestionText" class="quizQuestion jp">
+        </h2>
+
+        <div id="heritageChoiceArea" class="jp">
+            <button class="choiceButton heritageChoice"></button>
+            <button class="choiceButton heritageChoice"></button>
+            <button class="choiceButton heritageChoice"></button>
+            <button class="choiceButton heritageChoice"></button>
+        </div>
+        <button id="heritageSkipButton" class="en">
+            SKIP
+        </button>
+        <p id="heritageResult" class="quizResult en"></p>
+        <div id="heritageProgressArea">
+            <p class="en">DATA COLLECTION</p>
+            <div id="heritageProgressBar">
+                <div id="heritageProgressFill"></div>
+            </div>
+        </div>
+        <button id="heritageNextButton" class="en">
+            NEXT
+        </button>
+        <div id="heritageParticleArea"></div>
+
+    </div>
+    <div id="heritageAnalyzingScreen">
+        <h1 id="heritageAnalyzingTitle" class="en">
+            ANALYZING...
+        </h1>
+        <div id="heritageAnalysisBar">
+            <div id="heritageAnalysisFill"></div>
+        </div>
+        <p id="heritageAnalysisPercent" class="en">0%</p>
+    </div>
+    <div id="heritageResultScreen" class="panel">
+
+        <h2 id="heritageResultMessage" class="en neonGold">
+            HERITAGE RESULT
+        </h2>
+        <p id="heritageMissionMessage" class="jp"></p>
+        <p id="heritageScoreText" class="en"></p>
+
+        <div id="heritageStarRating"></div>
+
+        <div id="heritageReviewArea">
+
+            <h2 class="en neonGold">
+                REVIEW
+            </h2>
+
+            <div id="heritageWrongAnswerList"></div>
+
+        </div>
+
+        <button id="heritageReturnButton" class="en">
+            RETURN TO MAP
+        </button>
+
+    </div>
     <div id="quizScreen" class="panel">
         <div class="monitorHeader en">
             <span>EARTH INVASION</span><br>
             <span id="missionNumber">MISSION 1 / 3</span>
         </div>
 
-        <p id="questionText" class="jp"></p>
-        <div id="choicesArea">
-            <button id="choice1"></button>
-            <button id="choice2"></button>
-            <button id="choice3"></button>
-            <button id="choice4"></button>
+        <p id="questionText" class="quizQuestion jp"></p>
+        <div id="choicesArea" class="jp">
+            <button id="choice1" class="choiceButton"></button>
+            <button id="choice2" class="choiceButton"></button>
+            <button id="choice3" class="choiceButton"></button>
+            <button id="choice4" class="choiceButton"></button>
         </div>
         <button id="skipButton" class="en">SKIP</button>
 
-        <p id="result"></p>
+        <p id="result" class="quizResult en"></p>
         <div id="progressArea">
             <p class="en">DATA COLLECTION</p>
             <div id="progressBar">
@@ -187,6 +399,15 @@
         <p id="resultMessage" class="en"></p>
         <p id="scoreText" class="en"></p>
         <div id="starRating" class="en"></div>
+        <!-- 地球の神秘の獲得表示 -->
+        <div id="earthMysteryReward">
+            <p class="en">GET!!</p>
+            <div class="earthMysteryRewardContent">
+                <img class="earthMysteryGem" src="images/gem.png" alt="地球の神秘">
+                <span>地球の神秘</span>
+                <span id="earthMysteryRewardCount"></span>
+            </div>
+        </div>
         <div id="reviewArea">
             <h2>REVIEW</h2>
             <div id="wrongAnswerList"></div>
@@ -194,7 +415,9 @@
         <button id="restartButton" class="en">NEW MISSION</button>
     </div>
     <script src="questions.js"></script>
+    <script src="audioManager.js"></script>
     <script src="script.js"></script>
+    <script src="heritage.js"></script>
 </body>
 
 </html>

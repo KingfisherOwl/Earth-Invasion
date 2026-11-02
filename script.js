@@ -1,7 +1,90 @@
-
+//タイトル画面
 const startButton = document.getElementById("startButton");
 const startScreen = document.getElementById("startScreen");
+//ミッション選択画面
+const missionSelectScreen = document.getElementById("missionSelectScreen");
+const quizMissionButton = document.getElementById("quizMissionButton");
+const heritageMissionButton = document.getElementById("heritageMissionButton");
+//世界遺産地図画面
+const heritageMapScreen = document.getElementById("heritageMapScreen");
+const heritageWorldPoints = document.getElementById("heritageWorldPoints");
+const heritageAreaScreen = document.getElementById("heritageAreaScreen");
+//拡大地図
+const heritageAreaTitle = document.getElementById("heritageAreaTitle");
+const heritageAreaMapImage = document.getElementById("heritageAreaMapImage");
+const heritageAreaPoints = document.getElementById("heritageAreaPoints");
+const heritageBackButton = document.getElementById("heritageBackButton");
+const heritageAreaData = {
+    asia: {
+        name: "アジア",
+        image: "images/asia.png"
+    },
 
+    europe: {
+        name: "ヨーロッパ",
+        image: "images/europe.png"
+    },
+
+    africa: {
+        name: "アフリカ",
+        image: "images/africa.png"
+    },
+
+    northAmerica: {
+        name: "北アメリカ",
+        image: "images/northAmerica.png"
+    },
+
+    southAmerica: {
+        name: "南アメリカ",
+        image: "images/southAmerica.png"
+    },
+
+    oceania: {
+        name: "オセアニア",
+        image: "images/oceania.png"
+    }
+};
+//世界遺産クイズ画面
+const heritageQuizScreen =
+    document.getElementById("heritageQuizScreen");
+const heritageQuizName =
+    document.getElementById("heritageQuizName");
+const heritageQuestionNumber =
+    document.getElementById("heritageQuestionNumber");
+const heritageQuestionText =
+    document.getElementById("heritageQuestionText");
+const heritageChoiceButtons =
+    document.querySelectorAll(".heritageChoice");
+const heritageResult =
+    document.getElementById("heritageResult");
+const heritageNextButton =
+    document.getElementById("heritageNextButton");
+const heritageParticleArea = document.getElementById("heritageParticleArea");
+
+let currentHeritage = null;
+let heritageQuestionIndex = 0;
+let heritageScore = 0;
+
+const heritageResultScreen =
+    document.getElementById("heritageResultScreen");
+const heritageScoreText =
+    document.getElementById("heritageScoreText");
+const heritageStarRating =
+    document.getElementById("heritageStarRating");
+const heritageReviewArea =
+    document.getElementById("heritageReviewArea");
+const heritageWrongAnswerList =
+    document.getElementById("heritageWrongAnswerList");
+const heritageReturnButton =
+    document.getElementById("heritageReturnButton");
+
+let heritageWrongAnswers = [];
+
+const heritageCollectedMessage =
+    document.getElementById("heritageCollectedMessage");
+
+//地域クイズ画面
 const mapScreen = document.getElementById("mapScreen");
 
 const basicButton = document.getElementById("basicButton");
@@ -33,6 +116,8 @@ const southAmericaPercent = document.getElementById("southAmericaPercent");
 
 const oceaniaProgress = document.getElementById("oceaniaProgress");
 const oceaniaPercent = document.getElementById("oceaniaPercent");
+
+const MapBackButton = document.getElementById("MapBackButton");
 
 const areaElements = {
     basic: {
@@ -88,9 +173,38 @@ let clearedQuestions = {
     southAmerica: [],
     oceania: []
 };
+// 正解済み問題を保存
+function saveClearedQuestions() {
+    localStorage.setItem(
+        "clearedQuestions",
+        JSON.stringify(clearedQuestions)
+    );
+}
 
+// 正解済み問題を読み込む
+function loadClearedQuestions() {
+    const savedData = localStorage.getItem("clearedQuestions");
+
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+
+        Object.keys(clearedQuestions).forEach(function(area) {
+            if (Array.isArray(parsedData[area])) {
+                clearedQuestions[area] = parsedData[area];
+            }
+        });
+    }
+}
+// 保存された正解履歴を復元
+loadClearedQuestions();
+
+// 復元した正解履歴を進捗バーに反映
+updateAllAreaProgress();
+
+//地域クイズ画面
 const quizScreen = document.getElementById("quizScreen");
 let currentQuestions = [];
+let earthMysteryRewardGiven = false;
 
 const questionText = document.getElementById("questionText");
 const choice1 = document.getElementById("choice1");
@@ -126,18 +240,75 @@ let wrongAnswers = [];
 const wrongAnswerList = document.getElementById("wrongAnswerList");
 const reviewArea = document.getElementById("reviewArea");
 
+const earthMysteryReward =
+    document.getElementById("earthMysteryReward");
+
+const earthMysteryRewardCount =
+    document.getElementById("earthMysteryRewardCount");
+const earthMysteryCount =
+    document.getElementById("earthMysteryCount");
+
+
+
+const audioManager = new AudioManager();
+
+// BGM登録
+audioManager.addBGM("title", "audio/bgm/title.mp3");
+audioManager.addBGM("quiz", "audio/bgm/quiz.mp3");
+
+// 効果音登録
+audioManager.addSE("click", "audio/se/click.mp3");
+audioManager.addSE("correct", "audio/se/correct.mp3");
+audioManager.addSE("wrong", "audio/se/wrong.mp3");
+audioManager.addSE("collect", "audio/se/collect.mp3");
+audioManager.addSE("consume", "audio/se/consume.mp3");
+audioManager.addSE("success", "audio/se/success.mp3");
+audioManager.addSE("analyzing", "audio/se/analyzing.mp3");
+audioManager.addSE("analyzingfinish", "audio/se/analyzingfinish.mp3");
+audioManager.addSE("collect", "audio/se/collect.mp3");
+
+
+const creditsButton = document.getElementById("creditsButton");
+const creditsScreen = document.getElementById("creditsScreen");
+const creditsBackButton = document.getElementById("creditsBackButton");
+
+// CREDITSを開く
+creditsButton.addEventListener("click", function () {
+    audioManager.playSE("click");
+    creditsScreen.style.display = "flex";
+});
+
+// CREDITSを閉じる
+creditsBackButton.addEventListener("click", function () {
+    audioManager.playSE("click");
+    creditsScreen.style.display = "none";
+});
 
 
 //タイトル画面
 
-//スタートが押されたら地域選択画面表示
+//スタートが押されたらミッション選択画面表示
 startButton.addEventListener("click", function () {
+    audioManager.playSE("click");
     startScreen.style.display = "none";
-    //マップをだす
-    mapScreen.style.display = "block";
-
+    //ミッション選択をだす
+    missionSelectScreen.style.display = "block";
+    audioManager.playBGM("title");
 });
 
+//ミッション選択画面
+//地域調査が押されたら
+quizMissionButton.addEventListener("click", function () {
+    audioManager.playSE("click");
+    missionSelectScreen.style.display = "none";
+    mapScreen.style.display = "block";
+});
+//BACKが押されたら
+MapBackButton.addEventListener("click",function(){
+    audioManager.playSE("click");
+    mapScreen.style.display = "none";
+    missionSelectScreen.style.display = "block";
+});
 
 //地域選択画面
 
@@ -145,7 +316,10 @@ startButton.addEventListener("click", function () {
 //キーと値をセットで取り出し、配列に分割代入
 Object.entries(areaElements).forEach(function ([area, elements]) {
     elements.button.addEventListener("click", function () {
+        audioManager.playSE("click");
+        audioManager.playBGM("quiz");
         startAreaQuiz(area);
+        let earthMysteryRewardGiven = false;
     });
 });
 
@@ -225,13 +399,13 @@ function showQuestion() {
     choiceButtons.forEach(function (button, index) {
         button.textContent = currentQuestion.choices[index];
         button.disabled = false;
-        button.className = "";
+        button.className = "choiceButton";
     });
     //スキップボタンを押せるようにする
     skipButton.disabled = false;
     //正誤判定を消す
     result.textContent = "";
-    result.className = "";
+    result.className = "quizResult en";
 }
 
 //選択肢が押されたら正誤判定する
@@ -265,11 +439,12 @@ function updateDataCollection() {
 }
 //スキップが押されたら
 skipButton.addEventListener("click", function () {
+    audioManager.playSE("wrong");
     const currentQuestion = selectedQuestions[currentQuestionIndex];
     //不正解として表示
     result.textContent = "× SCAN SKIPPED";
     //赤くするためにクラスをつける
-    result.className = "incorrect";
+    result.classList.add("incorrect");
     //間違いデータに保存
     saveWrongAnswer(currentQuestion, "SKIPPED");
     //正解を緑にする
@@ -298,35 +473,39 @@ function checkAnswer(selectedAnswer, selectedButton) {
 
 //正解したときの処理
 function handleCorrectAnswer(currentQuestion, selectedButton) {
+    audioManager.playSE("correct");
     //〇を表示
     result.innerHTML = `
         <span class="correctMark">〇</span>
-        <span class="correctText en">DATA COLLECTED</span>
+        <span class="correctText en quizResult">DATA COLLECTED</span>
     `;
     //パネルを光らせる
     quizScreen.classList.remove("correctFlash");
     void quizScreen.offsetWidth;
     quizScreen.classList.add("correctFlash");
     //正解のエフェクト
-    createParticles();
+    createParticles(particleArea);
     //緑にするためにクラスをつける
-    result.className = "correct";
-    selectedButton.className = "correctButton";
+    result.classList.add("correct");
+    selectedButton.classList.add("correctButton");
     //スコアを増やす
     score++;
     //エリアの進捗に入っていなかったら追加
     if (!clearedQuestions[currentArea].includes(currentQuestion.id)) {
         clearedQuestions[currentArea].push(currentQuestion.id);
+        //保存する
+        saveClearedQuestions();
     }
 }
 
 //不正解の時の処理
 function handleWrongAnswer(currentQuestion, selectedAnswer, selectedButton) {
+    audioManager.playSE("wrong");
     //×を表示
     result.textContent = "× SCAN FAILED";
     //赤にするためにクラスをつける
-    result.className = "incorrect";
-    selectedButton.className = "incorrectButton";
+    result.classList.add("incorrect");
+    selectedButton.classList.add("incorrectButton");
     //間違えた問題を配列に保存
     saveWrongAnswer(currentQuestion, selectedAnswer);
     //正しい答えを緑にするためにクラスをつける
@@ -347,7 +526,7 @@ function saveWrongAnswer(currentQuestion, selectedAnswer) {
 function showCorrectChoice(currentQuestion) {
     choiceButtons.forEach(function (button, index) {
         if (currentQuestion.choices[index] === currentQuestion.answer) {
-            button.className = "correctButton";
+            button.classList.add("correctButton");
         }
     });
 }
@@ -366,7 +545,7 @@ function finishQuestion() {
 }
 
 //正解したときのエフェクトを作る
-function createParticles() {
+function createParticles(area) {
 
     const particleCount = 30;
     const distance = 500;
@@ -402,8 +581,7 @@ function createParticles() {
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
 
-        particleArea.appendChild(particle);
-
+        area.appendChild(particle);
         setTimeout(function () {
             particle.remove();
         }, 900);
@@ -412,6 +590,7 @@ function createParticles() {
 
 //次へが押されたら次の問題表示、最後だったらロード画面
 nextButton.addEventListener("click", function () {
+    audioManager.playSE("click");
     //次へを押した瞬間に見えなくする
     nextButton.style.visibility = "hidden";
     //次へを押した瞬間に操作もできなくする
@@ -437,6 +616,8 @@ function startAnalysis() {
     quizScreen.style.display = "none";
     //ロード画面表示
     analyzingScreen.style.display = "block";
+    audioManager.playSE("analyzing");
+    
     //ロードの進み具合を表す変数
     let analysisProgress = 0;
     //初期化
@@ -457,6 +638,8 @@ function startAnalysis() {
             //光らせる
             analysisFill.classList.add("progressFlash");
             analysisBar.classList.add("barFrameFlash");
+            audioManager.stopSE("analyzing");
+            audioManager.playSE("analyzingfinish");
             //％だったところを文字に変える
             analysisPercent.textContent = "ANALYSIS COMPLETE";
             //1000たったら、初期化して結果画面表示
@@ -468,6 +651,7 @@ function startAnalysis() {
                 analyzingScreen.style.display = "none";
                 //結果画面表示
                 showResultScreen();
+                audioManager.playBGM("title");
             }, 1000);
         }
     }, 200);
@@ -477,6 +661,19 @@ function startAnalysis() {
 
 //結果画面表示
 function showResultScreen() {
+    // 報酬がまだ付与されていない場合に地球の神秘を獲得
+    if (!earthMysteryRewardGiven) {
+
+        const reward =
+            calculateEarthMysteryReward(score);
+
+        // 地球の神秘を獲得
+        addEarthMystery(reward);
+        console.log(earthMystery);
+        // 報酬付与済みにする
+        earthMysteryRewardGiven = true;
+    }
+
     //結果画面表示
     resultScreen.style.display = "block";
     //スコア表示
@@ -488,6 +685,9 @@ function showResultScreen() {
     showStars();
     //REVIEW表示
     showReview();
+    // 地球の神秘の獲得数を表示
+    showEarthMysteryReward();
+
 }
 
 //ミッション成功か失敗か
@@ -497,6 +697,7 @@ function showMissionResult() {
         //文字を緑にするクラスをつける
         missionComplete.className = "successMission";
         resultMessage.textContent = "WE NEED MORE DATA...";
+        audioManager.playSE("success");
     } else {
         missionComplete.textContent = "MISSION FAILED";
         //文字を赤くするクラスをつける
@@ -511,11 +712,11 @@ function showStars() {
     starRating.innerHTML = "";
     //光らせる星の数
     let earnedStars = 0;
-    if(score === 5){
+    if (score === 5) {
         earnedStars = 3;
-    }else if(score >= 3){
+    } else if (score >= 3) {
         earnedStars = 2;
-    }else if(score >= 1){
+    } else if (score >= 1) {
         earnedStars = 1;
     }
     //500たったら☆を光らせはじめる
@@ -578,11 +779,14 @@ function showReview() {
 
 //もう一度遊ぶボタンが押されたら
 restartButton.addEventListener("click", function () {
+    audioManager.playSE("click");
     //ゲームの状態をリセット
     currentQuestionIndex = 0;
     score = 0;
     selectedQuestions = [];
     wrongAnswers = [];
+    // 報酬の獲得状態をリセット
+    earthMysteryRewardGiven = false;
 
     //進捗ゲージを０にもどす
     progressFill.style.width = "0%";
@@ -590,7 +794,10 @@ restartButton.addEventListener("click", function () {
     resultScreen.style.display = "none";
     mapScreen.style.display = "block";
     //地域の進捗を計算
-    //キーと値をセットで取り出し、配列に分割代入
+    updateAllAreaProgress();
+});
+// すべての地域の進捗を更新
+function updateAllAreaProgress() {
     Object.entries(areaElements).forEach(function ([area, elements]) {
         updateAreaProgress(
             area,
@@ -598,7 +805,7 @@ restartButton.addEventListener("click", function () {
             elements.percent
         );
     });
-});
+}
 
 //地域ごとの進捗の計算
 function updateAreaProgress(area, progressBar, percentText) {
@@ -611,13 +818,96 @@ function updateAreaProgress(area, progressBar, percentText) {
     //100％だったら金色にするクラスをつける
     //フレームはこの関数に渡していないため,
     const progressFrame = progressBar.parentElement;
-    if(rate === 100){
+    if (rate === 100) {
         progressBar.classList.add("areaCompleted");
         percentText.classList.add("percentCompleted");
         progressFrame.classList.add("frameCompleted");
-    }else{
+    } else {
         progressBar.classList.remove("areaCompleted");
         percentText.classList.remove("percentCompleted");
         progressFrame.classList.remove("frameCompleted");
     }
+}
+
+//地球の神秘
+
+// 地球の神秘の所持数を読み込む
+let earthMystery = Number(
+    localStorage.getItem("earthMystery") || 0
+);
+
+// 所持数を保存する
+function saveEarthMystery() {
+    localStorage.setItem(
+        "earthMystery",
+        earthMystery
+    );
+}
+
+// 地球の神秘を獲得する
+function addEarthMystery(amount) {
+    console.log("獲得前:", earthMystery);
+    console.log("獲得数:", amount);
+
+    earthMystery += amount;
+    saveEarthMystery();
+    updateEarthMysteryDisplay();
+
+    console.log("獲得後:", earthMystery);
+    console.log("保存値:", localStorage.getItem("earthMystery"));
+}
+
+// 地球の神秘を消費する
+function useEarthMystery() {
+    if (earthMystery < 1) {
+        return false;
+    }
+
+    earthMystery--;
+    saveEarthMystery();
+    // 所持数表示を更新
+    updateEarthMysteryDisplay();
+    return true;
+}
+
+// 地域クイズの報酬を計算
+function calculateEarthMysteryReward(score) {
+    if (score === 5) {
+        return 2;
+    }
+
+    if (score >= 3) {
+        return 1;
+    }
+
+    return 0;
+}
+//報酬表示
+function showEarthMysteryReward() {
+    const reward = calculateEarthMysteryReward(score);
+
+    if (reward > 0) {
+        earthMysteryReward.style.display = "block";
+        earthMysteryRewardCount.textContent = `× ${reward}`;
+    } else {
+        earthMysteryReward.style.display = "none";
+    }
+}
+// 地球の神秘の所持数を表示
+function updateEarthMysteryDisplay() {
+    earthMysteryCount.textContent = `× ${earthMystery}`;
+}
+// 保存されている所持数を初期表示
+updateEarthMysteryDisplay();
+
+// ゲームのセーブデータをすべてリセット
+function resetGameData() {
+    // localStorageから保存データを削除
+    localStorage.removeItem("earthMystery");
+    localStorage.removeItem("heritageUnlocks");
+    localStorage.removeItem("heritageCollected");
+    localStorage.removeItem("clearedQuestions");
+
+    // ページを再読み込み
+    location.reload();
 }

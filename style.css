@@ -21,7 +21,11 @@
 body{
     margin:0;
 
-    background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url("images/earth.jpg");
+    background:linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    var(--background-image, url("images/earth.jpg"));
 
     background-size:cover;
 
@@ -30,7 +34,7 @@ body{
     background-repeat:no-repeat;
 
     background-attachment:fixed;
-
+    min-height:100vh;
     color:white;
 
     text-align:center;
@@ -41,6 +45,33 @@ body{
 }
 .en{
     font-family:"Orbitron",sans-serif;
+}
+.neonGold {
+    color: var(--gold-light);
+
+    text-shadow:
+        0 0 5px var(--gold-light),
+        0 0 10px var(--gold),
+        0 0 20px var(--gold),
+        0 0 40px var(--gold);
+}
+.neonGreen{
+    color: var(--green);
+
+    text-shadow:
+        0 0 5px var(--green),
+        0 0 10px var(--green),
+        0 0 20px var(--green),
+        0 0 40px var(--green);
+}
+.neonRed{
+    color: var(--red);
+
+    text-shadow:
+        0 0 5px var(--red),
+        0 0 10px var(--red),
+        0 0 20px var(--red),
+        0 0 40px var(--red);
 }
 h1{
     color: #0066cc;
@@ -102,6 +133,154 @@ button:not(:disabled):hover {
         0 0 10px white,
         0 0 20px white;
 }
+/*選択肢の共通スタイル*/
+.choiceButton {
+    font-size: 18px;
+    padding: 15px;
+
+    background: var(--dark);
+    color: var(--green);
+
+    border: 2px solid var(--green);
+    border-radius: 10px;
+
+    width: 280px;
+    margin: 10px;
+    font-family: "Zen Kaku Gothic New", monospace;
+}
+/*問題文の共通スタイル*/
+.quizQuestion {
+    font-size: 20px;
+    line-height: 1.6;
+}
+/*正誤判定の共通スタイル*/
+.quizResult {
+    min-height: 30px;
+    margin: 15px 0;
+
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 3px;
+}
+
+/* クレジットボタン */
+#creditsButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    width:120px;
+
+    padding: 8px 16px;
+
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+
+    border: 1px solid #38bdf8;
+    border-radius: 5px;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    z-index: 10;
+}
+
+/* マウスを乗せたとき */
+#creditsButton:hover {
+    background: #38bdf8;
+    color: #061020;
+
+    box-shadow:
+        0 0 10px #38bdf8,
+        0 0 20px rgba(56, 189, 248, 0.5);
+}
+/* CREDITS画面 */
+#creditsScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(3, 8, 22, 0.94);
+
+    align-items: center;
+    justify-content: center;
+}
+/* 中央パネル */
+.creditsPanel {
+    width: min(90%, 550px);
+    padding: 35px;
+    box-sizing: border-box;
+
+    background: #0b1429;
+    border: 1px solid #38bdf8;
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 15px rgba(56, 189, 248, 0.3),
+        inset 0 0 20px rgba(56, 189, 248, 0.05);
+
+    text-align: center;
+}
+.creditsPanel h3 {
+    color: #c084fc;
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+/* タイトル */
+.creditsPanel h2 {
+    color: #38bdf8;
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #38bdf8;
+    margin-bottom: 30px;
+}
+/* 項目名 */
+.creditsPanel h3 {
+    color: #c084fc;
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+/* 説明文 */
+.creditsPanel p {
+    color: #dbeafe;
+    font-family: "M PLUS 1 Code", sans-serif;
+    font-size: 14px;
+    line-height: 2;
+    margin-bottom: 18px;
+}
+/* 戻るボタン */
+#creditsBackButton {
+    margin-top: 20px;
+    padding: 10px 35px;
+
+    background: transparent;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+    border-radius: 5px;
+
+    font-family: "Orbitron", sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#creditsBackButton:hover {
+    background: #38bdf8;
+    color: #061020;
+    box-shadow: 0 0 20px #38bdf8;
+}
+
+
+#startScreen {
+    position: relative;
+}
 /*EARTH INVASION*/
 #gameTitle{
     
@@ -139,6 +318,522 @@ button:not(:disabled):hover {
         0 0 70px var(--green);
     }
 }
+
+/*ミッション選択画面*/
+#missionSelectScreen,
+#heritageMapScreen {
+    display: none;
+}
+#quizMissionButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+#heritageMissionButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+/*世界遺産選択画面*/
+#heritageWorldMap {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 20px auto;
+}
+#heritageWorldMapImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+/*上に横並び*/
+#heritageAreaButtons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 20px 0;
+}
+.heritageAreaButton {
+    width: auto;
+    min-width: 100px;
+
+    padding: 10px 15px;
+    margin: 0;
+
+    font-size: 14px;
+}
+.heritageAreaButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+/*拡大地図*/
+#heritageAreaScreen {
+    display: none;
+}
+
+#heritageAreaMap {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 20px auto;
+}
+
+#heritageAreaMapImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+.heritagePoint.collected {
+    background: var(--gold);
+
+    box-shadow:
+        0 0 6px var(--gold),
+        0 0 15px var(--gold),
+        0 0 25px var(--gold);
+}
+/*白い点*/
+#heritageWorldMap {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 20px auto;
+}
+
+#heritageWorldMapImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+.heritageWorldPoint {
+    position: absolute;
+
+    width: 7.5px;
+    height: 7.5px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 2px solid var(--white);
+    border-radius: 50%;
+
+    background: var(--white);
+
+    transform: translate(-50%, -50%);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 5px var(--white),
+        0 0 10px var(--white);
+}
+/*金の点クリア済み*/
+.heritageWorldPoint.collected {
+    border-color: var(--gold);
+    background: var(--gold);
+
+    box-shadow:
+        0 0 5px var(--gold),
+        0 0 12px var(--gold),
+        0 0 20px var(--gold);
+}
+/* 未解放：白 */
+.heritageWorldPoint.locked {
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* 解放済み：紫 */
+.heritageWorldPoint.unlocked {
+    border-color: #B66CFF;
+    background: #B66CFF;
+
+    box-shadow:
+        0 0 5px #B66CFF,
+        0 0 12px #B66CFF,
+        0 0 20px #B66CFF;
+}
+
+/* 所持数表示 */
+.earthMysteryInventoryGem {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+/*解放画面*/
+.earthMysteryText {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 8px;
+}
+
+.earthMysteryText img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+/* 解放できないとき暗くする */
+#heritageUnlockButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+/*光って消える*/
+.unlockGem {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.unlockGem.consuming {
+    animation: consumeGem 1.2s ease-in-out forwards;
+}
+
+@keyframes consumeGem {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        filter:
+            brightness(1)
+            drop-shadow(0 0 5px #a855f7);
+    }
+
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+        filter:
+            brightness(1.8)
+            drop-shadow(0 0 15px #a855f7)
+            drop-shadow(0 0 25px #7c3aed);
+    }
+
+    60% {
+        transform: scale(1.5);
+        opacity: 1;
+        filter:
+            brightness(3)
+            drop-shadow(0 0 25px #c084fc)
+            drop-shadow(0 0 45px #a855f7)
+            drop-shadow(0 0 65px #38bdf8);
+    }
+
+    80% {
+        transform: scale(1.7);
+        opacity: 1;
+        filter:
+            brightness(5)
+            drop-shadow(0 0 35px #ffffff)
+            drop-shadow(0 0 65px #c084fc)
+            drop-shadow(0 0 100px #38bdf8);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+        filter:
+            brightness(6)
+            drop-shadow(0 0 100px #ffffff);
+    }
+}
+/* 宝石と粒子の表示領域 */
+.unlockGemContainer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 粒子を表示する領域 */
+.gemParticles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* 光の粒子 */
+.gemParticle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+
+    background: #b66cff;
+
+    box-shadow:
+        0 0 8px currentColor,
+        0 0 16px currentColor;
+
+    animation: gemParticleBurst 0.7s ease-out forwards;
+}
+
+/* 水色の粒子 */
+.gemParticle.blue {
+    background: #38bdf8;
+    color: #38bdf8;
+}
+
+/* 紫色の粒子 */
+.gemParticle.purple {
+    background: #b66cff;
+    color: #b66cff;
+}
+
+/* 粒子が外側へ飛んで消える */
+@keyframes gemParticleBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                calc(-50% + var(--moveX)),
+                calc(-50% + var(--moveY))
+            )
+            scale(0);
+        opacity: 0;
+    }
+}
+/* 結果画面の獲得表示 */
+.earthMysteryGem {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+.earthMysteryGem {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+
+    animation: gemFloat 2s ease-in-out infinite;
+}
+
+@keyframes gemFloat {
+    0%, 100% {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 5px #a855f7);
+    }
+
+    50% {
+        transform: translateY(-8px);
+        filter: drop-shadow(0 0 15px #d8b4fe);
+    }
+}
+
+#heritageBackButton:hover,#MapBackButton:hover,#heritageMapBackButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+/*ロック状態画面*/
+#heritageUnlockScreen {
+    display: none;
+}
+/*世界遺産クイズ画面*/
+
+#heritageQuizScreen {
+    display: none;
+}
+
+#heritageNextButton {
+    visibility: hidden;
+}
+#heritageNextButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+/*結果画面*/
+#heritageResultScreen {
+    display: none;
+}
+#heritageResultMessage,#heritageResearch{
+    font-size:40px;
+    letter-spacing:2px;
+}
+#heritageMissionMessage{
+    font-size:25px;
+    letter-spacing:1px;
+    word-break:break-word;
+    animation:missionBlink 0.8s 3;
+}
+#heritageScoreText{
+    color:var(--gold-light);
+    font-size:23px;
+    letter-spacing:2px;
+}
+#heritageReturnButton{
+    letter-spacing: 2px;
+    text-shadow:0 0 5px var(--green);
+}
+.heritageReturnGlow{
+    animation: heritageReturnGlow 2s  ease-in-out infinite;
+}
+@keyframes heritageReturnGlow{
+    0% {
+        box-shadow: 0 0 5px var(--green);
+    }
+    50% {
+        box-shadow: 0 0 30px var(--green);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--green);
+    }
+}
+#heritageReturnButton:hover{
+    background:var(--green);
+    color:black;
+    box-shadow:
+    0 0 10px var(--green),
+    0 0 20px var(--green);
+}
+
+
+
+/*点を金にするエフェクト*/
+.heritageCollectedEffect {
+    animation:
+        heritageCollect 1s ease-out;
+}
+
+@keyframes heritageCollect {
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        box-shadow:
+            0 0 5px #a855f7,
+            0 0 10px #a855f7;
+    }
+    40% {
+        transform:
+            translate(-50%, -50%)
+            scale(3);
+
+        box-shadow:
+            0 0 15px var(--gold),
+            0 0 30px var(--gold),
+            0 0 60px var(--gold);
+    }
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        box-shadow:
+            0 0 5px var(--gold),
+            0 0 12px var(--gold),
+            0 0 20px var(--gold);
+    }
+}
+/*COLLECTED*/
+#heritageCollectedMessage {
+    min-height: 40px;
+
+    margin: 10px 0;
+
+    color: transparent;
+
+    font-size: 28px;
+    letter-spacing: 4px;
+
+    text-align: center;
+}
+/*金色にする*/
+#heritageCollectedMessage.showCollectedMessage {
+    color: var(--gold);
+
+    text-shadow:
+        0 0 5px var(--gold),
+        0 0 10px var(--gold),
+        0 0 20px var(--gold),
+        0 0 40px var(--gold);
+
+    animation:
+        collectedMessagePop 0.8s ease-out;
+}
+@keyframes collectedMessagePop {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 世界遺産獲得時にパネルを金色に光らせる */
+.heritageGoldFlash {
+    animation: heritageGoldScreenFlash 0.8s;
+}
+@keyframes heritageGoldScreenFlash {
+    0% {
+        box-shadow:
+            0 0 0 rgba(255, 215, 0, 0);
+    }
+    40% {
+        box-shadow:
+            0 0 35px rgba(255, 215, 0, 0.9),
+            inset 0 0 40px rgba(255, 215, 0, 0.2);
+    }
+    100% {
+        box-shadow:
+            0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
 /*地域選択画面*/
 #mapScreen {
     display: none;
@@ -304,21 +999,20 @@ button:not(:disabled):hover {
 }
 
 /*問題画面*/
-/*選択肢のフォント*/
-#choicesArea button {
-    font-family: "Zen Kaku Gothic New", monospace;
-}
-/*正誤・SKIPPED*/
-#result{
-    font-family:"Orbitron",sans-serif;
-    letter-spacing:2px;
-    min-height:30px;
-    margin:15px 0;
-}
+
 /*MISSIONSTART*/
 #startButton{
     font-size:22px;
     letter-spacing:3px;
+}
+#startButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
 }
 /*問題画面*/
 #quizScreen{
@@ -326,12 +1020,30 @@ button:not(:disabled):hover {
     position:relative;
     overflow:hidden;
 }
+.choiceButton:hover:not(:disabled){
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
 /*NEXT*/
 #nextButton{
     visibility:hidden;
     font-size:20px;
     letter-spacing:3px;
     text-shadow:0 0 5px var(--green);
+}
+#nextButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
 }
 
 
@@ -418,7 +1130,7 @@ button:not(:disabled):hover {
     }
 }
 /*パネルを光らせる*/
-#quizScreen.correctFlash {
+.correctFlash {
     animation: correctScreenFlash 0.5s;
 }
 /*パネルを光らせる*/
@@ -439,7 +1151,8 @@ button:not(:disabled):hover {
     }
 }
 /*正解のエフェクト*/
-#particleArea {
+#particleArea,
+#heritageParticleArea {
     position: absolute;
     inset: 0;
 
@@ -488,7 +1201,7 @@ button:not(:disabled):hover {
 
 
 /*スキップ*/
-#skipButton{
+#skipButton,#heritageSkipButton{
     display:block;
     width:120px;
     padding:7px 12px;
@@ -507,22 +1220,32 @@ button:not(:disabled):hover {
     box-shadow:0 0 8px var(--blue-dark),
     0 0 15px rgba(0,191,255,0.5);
 }
+#heritageSkipButton:not(:disabled):hover{
+    background:#162630;
+    box-shadow:0 0 8px var(--blue-dark),
+    0 0 15px rgba(0,191,255,0.5);
+}
 /*スキップ押せないとき*/
 #skipButton:disabled{
     opacity:0.4;
     cursor:default;
     box-shadow:none;
 }
+#heritageSkipButton:disabled{
+    opacity:0.4;
+    cursor:default;
+    box-shadow:none;
+}
 /*DATA COLLECTION*/
-#progressArea{
+#progressArea,#heritageProgressArea{
     margin-top:30px;
 }
-#progressArea p {
+#progressArea,#heritageProgressArea p {
     color:var(--blue);
     font-size:14px;
     letter-spacing:2px;
 }
-#progressBar{
+#progressBar,#heritageProgressBar{
     width:80%;
     height:18px;
     margin:10px auto 25px;
@@ -531,7 +1254,7 @@ button:not(:disabled):hover {
     overflow:hidden;
     background:rgba(0,255,153,0.1);
 }
-#progressFill{
+#progressFill,#heritageProgressFill{
     width:0%;
     height:100%;
     background:linear-gradient(
@@ -554,11 +1277,11 @@ button:not(:disabled):hover {
 
 
 /*ロード画面*/
-#analyzingScreen{
+#analyzingScreen,#heritageAnalyzingScreen{
     display:none;
 }
 /*ANALYZING...*/
-#analyzingTitle{
+#analyzingTitle,#heritageAnalyzingTitle{
     color:var(--blue);
     font-size:48px;
     letter-spacing:6px;
@@ -569,7 +1292,7 @@ button:not(:disabled):hover {
     0 0 40px var(--blue);
 }
 /*ロードゲージ*/
-#analysisBar{
+#analysisBar,#heritageAnalysisBar{
     width:70%;
     height:20px;
     margin:20px auto;
@@ -579,7 +1302,7 @@ button:not(:disabled):hover {
     background:rgba(0,255,153,0.1);
 }
 /*ロードゲージの中身*/
-#analysisFill{
+#analysisFill,#heritageAnalysisFill{
     width:0%;
     height:100%;
     background: var(--blue);
@@ -587,7 +1310,7 @@ button:not(:disabled):hover {
     0 0 20px var(--blue);
 }
 /* % */
-#analysisPercent{
+#analysisPercent,#heritageAnalysisPercent{
     color:var(--blue);
 }
 /*ロードゲージを光らせる*/
@@ -733,7 +1456,6 @@ button:not(:disabled):hover {
 /*間違えた答え*/
 .reviewWrong{
     color:var(--red);
-    
 }
 /*正しかった答え*/
 .reviewCorrect{
@@ -787,6 +1509,74 @@ button:not(:disabled):hover {
     0 0 20px var(--green);
 }
 
+/* 地球の神秘の獲得表示 */
+#earthMysteryReward {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 320px;
+    border: 1px solid #9b6aff;
+    border-radius: 12px;
+    background: rgba(30, 20, 60, 0.6);
+    box-shadow: 0 0 12px rgba(155, 106, 255, 0.3);
+}
+
+#earthMysteryReward p {
+    margin: 0 0 12px;
+    color: #c4a8ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.earthMysteryRewardContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+}
+
+.earthMysteryGem {
+    font-size: 30px;
+}
+
+#earthMysteryRewardCount {
+    color: #e0baff;
+    font-size: 24px;
+    font-weight: bold;
+}
+/*所持数*/
+/* 地球の神秘の所持数表示 */
+#earthMysteryInventory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: fit-content;
+    margin: 15px auto;
+    padding: 10px 18px;
+
+    background: rgba(25, 20, 55, 0.8);
+    border: 1px solid #a17bff;
+    border-radius: 12px;
+
+    box-shadow: 0 0 12px rgba(161, 123, 255, 0.3);
+}
+
+.earthMysteryInventoryGem {
+    font-size: 26px;
+}
+
+.earthMysteryInventoryName {
+    color: #e3d4ff;
+    font-size: 14px;
+}
+
+#earthMysteryCount {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
 /*スマホ対応*/
 @media (max-width:600px){
     body{
