@@ -49,7 +49,19 @@
             <button id="creditsBackButton">BACK</button>
         </div>
     </div>
+    <div id="playGuideScreen">
+        <div class="playGuidePanel">
+            <h2>遊び方</h2>
+            <p>
+                地域調査でアイテムを集め、それから世界遺産調査に挑戦しましょう。<br>
+                世界遺産調査では、世界遺産を開放してから調査してください。<br>
+                世界遺産の点が金色になれば調査完了です。
+            </p>
+            <button id="playGuideBackButton">BACK</button>
+        </div>
+    </div>
     <div id="missionSelectScreen" class="panel">
+        <button class="playGuide">?</button>
 
         <h2 class="en">
             SELECT MISSION
@@ -68,8 +80,9 @@
         </button>
 
     </div>
-    <div id="mapScreen" class="panel">
 
+    <div id="mapScreen" class="panel">
+        <button class="playGuide">?</button>
         <h2 class="en">SELECT AREA</h2>
         <p class="mapMessage jp">
             データを収集する地域を選択してください
@@ -193,7 +206,7 @@
     </div>
 
     <div id="heritageMapScreen" class="panel">
-
+        <button class="playGuide">?</button>
         <h2 id="heritageResearch" class="en neonGold">
             HERITAGE RESEARCH
         </h2>
@@ -279,7 +292,7 @@
             <img src="images/gem.png" class="unlockGem" alt="地球の神秘">
             <div class="gemParticles"></div>
         </div>
-        地球の神秘 × 1
+        地球の神秘 × 1 必要
         </p>
 
         <button id="heritageUnlockButton" class="en">

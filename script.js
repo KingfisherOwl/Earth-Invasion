@@ -271,6 +271,9 @@ audioManager.addSE("collect", "audio/se/collect.mp3");
 const creditsButton = document.getElementById("creditsButton");
 const creditsScreen = document.getElementById("creditsScreen");
 const creditsBackButton = document.getElementById("creditsBackButton");
+const playGuideButtons = document.querySelectorAll(".playGuide");
+const playGuideScreen = document.getElementById("playGuideScreen");
+const playGuideBackButton = document.getElementById("playGuideBackButton");
 
 // CREDITSを開く
 creditsButton.addEventListener("click", function () {
@@ -284,6 +287,19 @@ creditsBackButton.addEventListener("click", function () {
     creditsScreen.style.display = "none";
 });
 
+//プレイガイドを開く
+playGuideButtons.forEach(function(button) {
+    button.addEventListener("click", showPlayGuide);
+});
+// プレイガイドを閉じる
+playGuideBackButton.addEventListener("click", function () {
+    audioManager.playSE("click");
+    playGuideScreen.style.display = "none";
+});
+function showPlayGuide(){
+    audioManager.playSE("click");
+    playGuideScreen.style.display = "flex";
+}
 
 //タイトル画面
 
