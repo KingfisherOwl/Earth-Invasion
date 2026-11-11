@@ -21,6 +21,9 @@ const heritageUnlockCancelButton =
   document.getElementById("heritageUnlockCancelButton");
 let selectedUnlockHeritage = null;
 
+const heritageUnlockMessage = document.getElementById("heritageUnlockMessage");
+const noEarthMysteryGuide = document.getElementById("noEarthMysteryGuide");
+
 //世界遺産データ
 const heritageData = [
   {
@@ -1382,6 +1385,8 @@ function showHeritageWorldPoints() {
     //点が押されたらクイズを開始する
     point.addEventListener("click", function () {
       audioManager.playSE("click");
+      point.classList.remove("unlockedHighlight");
+      heritageUnlockMessage.textContent = "";
       if (heritage.unlocked || heritage.collected) {
         startHeritageQuiz(heritage);
         audioManager.playBGM("quiz");
@@ -1435,6 +1440,8 @@ function showHeritageAreaPoints(area) {
     }
     // 点が押されたとき
     point.addEventListener("click", function () {
+      point.classList.remove("unlockedHighlight");
+      heritageUnlockMessage.textContent = "";
       audioManager.playSE("click");
       if (heritage.unlocked || heritage.collected) {
         // 解放済みならクイズを開始
@@ -1478,6 +1485,11 @@ function resetBackground() {
 
 //解放するか画面
 function openHeritageUnlock(heritage) {
+  if(earthMystery === 0){
+    noEarthMysteryGuide.style.display = "block";
+  }else{
+    noEarthMysteryGuide.style.display = "none";
+  }
   const gem = document.querySelector(".unlockGem");
   //消した宝石をもどす
   if (gem) {
@@ -1501,6 +1513,12 @@ function openHeritageUnlock(heritage) {
   // 所持数が足りない場合は解放できない
   heritageUnlockButton.disabled = earthMystery < 1;
 }
+//0個の時地理クイズの地図に行く
+goToGeographyQuiz.addEventListener("click", function () {
+    audioManager.playSE("click");
+    heritageUnlockScreen.style.display = "none";
+    mapScreen.style.display = "block";
+});
 //解放して地図に戻る
 heritageUnlockButton.addEventListener("click", async function () {
   if (!selectedUnlockHeritage) {
@@ -1537,9 +1555,31 @@ heritageUnlockButton.addEventListener("click", async function () {
 
   // 地図に戻って表示を更新
   openHeritageArea(selectedUnlockHeritage.area);
+
+  //解放したところを光らせる
+  showHeritageUnlockEffect(selectedUnlockHeritage.id);
+
+
   // ボタンを再び有効化
   heritageUnlockButton.disabled = false;
 });
+
+function showHeritageUnlockEffect(heritageId) {
+  //ポイントを取得
+  const point =
+    heritageAreaPoints.querySelector(
+      `[data-heritage-id="${heritageId}"]`
+    );
+  if (!point) {
+    return;
+  }
+  //発光用クラスを追加
+  point.classList.add("unlockedHighlight");
+  //「世界遺産を開放しました！紫色のポイントをクリックして調査を開始しよう！
+  heritageUnlockMessage.textContent = "世界遺産を解放しました！紫色のポイントをクリックして調査を開始しよう！";
+
+}
+
 //キャンセル
 heritageUnlockCancelButton.addEventListener("click", function () {
   audioManager.playSE("click");
@@ -1825,7 +1865,7 @@ heritageNextButton.addEventListener(
       showHeritageQuestion();
     } else {
       heritageStartAnalysis();
-      
+
     }
   }
 );
@@ -1981,9 +2021,9 @@ heritageReturnButton.addEventListener(
         openHeritageArea(currentHeritage.area);
         // 紫色のポイントに対して演出を開始
         playHeritageCollectEffect(currentHeritage.id);
-        setTimeout(function(){
+        setTimeout(function () {
           audioManager.playSE("collect");
-        },500);
+        }, 500);
         saveHeritageCollected();
       }
     }

@@ -53,13 +53,10 @@
         <div class="playGuidePanel">
             <h2 class="jp">遊び方</h2>
             <p class="jp">
-                地域調査でアイテムを集め、それから世界遺産調査に挑戦しましょう。<br>
-                世界遺産調査では、世界遺産を開放してから調査してください。<br>
+                地理クイズでアイテムを集め、それから世界遺産クイズに挑戦しましょう。<br>
+                世界遺産クイズでは、世界遺産を解放してから調査してください。<br>
                 世界遺産の点が金色になれば調査完了です。
             </p>
-            <h5 class="jp">
-                白：未開放　紫：解放済み　金：調査済み
-            </h5>
             <button id="playGuideBackButton">BACK</button>
         </div>
     </div>
@@ -75,11 +72,12 @@
         </p>
 
         <button id="quizMissionButton" class="jp">
-            地域調査
+            地理クイズ
+            <img class="areaQuizGem" src="images/gem.png" alt="地球の神秘">
         </button>
 
         <button id="heritageMissionButton" class="jp">
-            世界遺産調査
+            世界遺産クイズ
         </button>
 
     </div>
@@ -220,11 +218,11 @@
         </div>
 
         <p class="jp">
-            調査する地域を選択してください
+            挑戦する世界遺産を選択してください
         </p>
-        <h5 class="jp">
-            ボタンでエリアを拡大し、点をクリック！
-        </h5>
+        <h4 class="jp">
+            ボタンでエリアを拡大し、ポイントをクリック！
+        </h4>
 
         <!-- 地域選択 -->
         <div id="heritageAreaButtons">
@@ -255,6 +253,7 @@
 
         </div>
 
+
         <!-- 世界地図 -->
         <div id="heritageWorldMap">
 
@@ -262,6 +261,9 @@
 
             <div id="heritageWorldPoints"></div>
 
+        </div>
+        <div>
+            <h4 class="jp">白：未開放　紫：解放済み　金：調査済み</h4>
         </div>
         <button id="heritageMapBackButton" class="en">
             BACK
@@ -274,6 +276,7 @@
 
         <h2 id="heritageAreaTitle" class="jp"></h2>
         <p id="heritageCollectedMessage" class="en"></p>
+        <p id="heritageUnlockMessage" class="jp"></p>
         <div id="heritageAreaMap">
 
             <img id="heritageAreaMapImage" src="" alt="">
@@ -308,6 +311,10 @@
         <button id="heritageUnlockCancelButton" class="en">
             キャンセル
         </button>
+        <div id="noEarthMysteryGuide">
+            <p>地球の神秘がありません！地理クイズに挑戦して、地球の神秘を集めよう！</p>
+            <button id="goToGeographyQuiz">地理クイズへ</button>
+        </div>
     </div>
     <div id="heritageQuizScreen" class="panel">
 
