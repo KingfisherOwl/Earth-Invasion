@@ -188,7 +188,7 @@ function loadClearedQuestions() {
     if (savedData) {
         const parsedData = JSON.parse(savedData);
 
-        Object.keys(clearedQuestions).forEach(function(area) {
+        Object.keys(clearedQuestions).forEach(function (area) {
             if (Array.isArray(parsedData[area])) {
                 clearedQuestions[area] = parsedData[area];
             }
@@ -255,6 +255,8 @@ const audioManager = new AudioManager();
 // BGM登録
 audioManager.addBGM("title", "audio/bgm/title.mp3");
 audioManager.addBGM("quiz", "audio/bgm/quiz.mp3");
+audioManager.setBGMVolume(0.04);
+audioManager.setSEVolume(0.07)
 
 // 効果音登録
 audioManager.addSE("click", "audio/se/click.mp3");
@@ -275,6 +277,27 @@ const playGuideButtons = document.querySelectorAll(".playGuide");
 const playGuideScreen = document.getElementById("playGuideScreen");
 const playGuideBackButton = document.getElementById("playGuideBackButton");
 
+//画像読み込み関係
+const worldMapImage = document.getElementById("worldMapImage");
+
+
+async function loadImage(image, button) {
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "Loading...";
+    try {
+        await image.decode();
+        return true;
+    } catch (error) {
+        alert("画像の読み込みに失敗しました。もう一度お試しください。");
+        console.error(error);
+        return false;
+    } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+}
+
 // CREDITSを開く
 creditsButton.addEventListener("click", function () {
     audioManager.playSE("click");
@@ -288,7 +311,7 @@ creditsBackButton.addEventListener("click", function () {
 });
 
 //プレイガイドを開く
-playGuideButtons.forEach(function(button) {
+playGuideButtons.forEach(function (button) {
     button.addEventListener("click", showPlayGuide);
 });
 // プレイガイドを閉じる
@@ -296,7 +319,7 @@ playGuideBackButton.addEventListener("click", function () {
     audioManager.playSE("click");
     playGuideScreen.style.display = "none";
 });
-function showPlayGuide(){
+function showPlayGuide() {
     audioManager.playSE("click");
     playGuideScreen.style.display = "flex";
 }
@@ -310,17 +333,21 @@ startButton.addEventListener("click", function () {
     //ミッション選択をだす
     missionSelectScreen.style.display = "block";
     audioManager.playBGM("title");
+
 });
 
 //ミッション選択画面
-//地域調査が押されたら
-quizMissionButton.addEventListener("click", function () {
+//地理クイズが押されたら
+quizMissionButton.addEventListener("click", async function () {
     audioManager.playSE("click");
+    const success = await loadImage(worldMapImage, quizMissionButton);
+    if(!success) return;
     missionSelectScreen.style.display = "none";
     mapScreen.style.display = "block";
+
 });
 //BACKが押されたら
-MapBackButton.addEventListener("click",function(){
+MapBackButton.addEventListener("click", function () {
     audioManager.playSE("click");
     mapScreen.style.display = "none";
     missionSelectScreen.style.display = "block";
@@ -633,7 +660,7 @@ function startAnalysis() {
     //ロード画面表示
     analyzingScreen.style.display = "block";
     audioManager.playSE("analyzing");
-    
+
     //ロードの進み具合を表す変数
     let analysisProgress = 0;
     //初期化

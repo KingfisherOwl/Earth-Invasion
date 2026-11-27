@@ -138,9 +138,8 @@ button:not(:disabled):hover {
     color: white;
 
     text-shadow:
-        0 0 5px white,
-        0 0 10px white,
-        0 0 20px white;
+        0 0 0px white,
+        0 0 0px white,
 }
 
 /*選択肢の共通スタイル*/
@@ -508,6 +507,9 @@ button:not(:disabled):hover {
         0 0 8px var(--green),
         0 0 18px var(--green);
 }
+#heritageLoadingMessage {
+    display: none;
+}
 
 /*拡大地図*/
 #heritageAreaScreen {
@@ -630,6 +632,20 @@ button:not(:disabled):hover {
 
 /* 解放できないとき暗くする */
 #heritageUnlockButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+#heritageUnlockCancelButton:hover{
+    background: rgba(0, 255, 153, 0.15);
+
+    color: white;
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px var(--green);
+}
+#heritageUnlockCancelButton:disabled{
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;

@@ -10,10 +10,11 @@ class AudioManager {
     this.currentBGMName = null;
 
     // 音量設定
-    this.bgmVolume = 0.3;
-    this.seVolume = 0.45;
+    this.bgmVolume = 0.2;
+    this.seVolume = 0.3;
     // 再生中の効果音を管理
     this.playingSE = [];
+    
   }
 
   // BGMを登録
@@ -119,10 +120,12 @@ class AudioManager {
   setBGMVolume(volume) {
     this.bgmVolume = Math.max(0, Math.min(1, volume));
 
+    console.log(this.bgmVolume); // 追加
+
     Object.values(this.bgm).forEach(audio => {
       audio.volume = this.bgmVolume;
     });
-  }
+}
 
   // 効果音の音量を変更
   setSEVolume(volume) {
